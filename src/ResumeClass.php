@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Muliacode\Resume;
 
-class ResumeClass {}
+final class ResumeClass
+{
+}

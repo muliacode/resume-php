@@ -18,8 +18,11 @@
         "php": "^8.3"
     },
     "require-dev": {
-        "pestphp/pest": "^3.0",
         "laravel/pint": "^1.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-type-coverage": "^3.6",
+        "phpstan/phpstan": "^2.1",
+        "rector/rector": "^2.1",
         "spatie/ray": "^1.28"
     },
     "autoload": {
@@ -33,9 +36,20 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/pest",
-            "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "lint": "vendor/bin/pint",
+        "test:lint": "vendor/bin/pint --test",
+        "refactor": "rector",
+        "test:refactor": "rector --dry-run",
+        "test:types": "vendor/bin/phpstan analyse --memory-limit=-1",
+        "test:type-coverage": "vendor/bin/pest --type-coverage --min=100",
+        "test:unit": "vendor/bin/pest --parallel --coverage --min=100",
+        "test": [
+            "@test:lint",
+            "@test:refactor",
+            "@test:types",
+            "@test:type-coverage",
+            "@test:unit"
+        ]
     },
     "config": {
         "sort-packages": true,
