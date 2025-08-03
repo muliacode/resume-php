@@ -19,9 +19,7 @@ final class Interest
     }
 
     /**
-     * @param string|null $name
      * @param string[]|null $keywords
-     * @return self
      */
     public static function create(?string $name = null, ?array $keywords = null): self
     {

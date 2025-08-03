@@ -9,6 +9,7 @@ use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Interest;
 use Muliacode\Resume\Models\Language;
 use Muliacode\Resume\Models\Publication;
+use Muliacode\Resume\Models\Reference;
 use Muliacode\Resume\Models\Skill;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
@@ -581,4 +582,42 @@ it('can retrieve added languages', function (): void {
 
     expect($retrievedLanguages)->toBeArray()
         ->and($retrievedLanguages[0])->toBe($language);
+});
+
+it('can add a single reference', function (): void {
+    $reference = new Reference(name: 'John Smith', reference: 'Great team player');
+
+    $this->resume->addReferences($reference);
+
+    expect($this->resume->getReferences())->toHaveCount(1)
+        ->and($this->resume->getReferences()[0])->toBe($reference);
+});
+
+it('can add multiple references', function (): void {
+    $reference1 = new Reference(name: 'John Smith', reference: 'Great team player');
+    $reference2 = new Reference(name: 'Jane Doe', reference: 'Excellent project manager');
+
+    $this->resume->addReferences($reference1, $reference2);
+
+    expect($this->resume->getReferences())->toHaveCount(2)
+        ->and($this->resume->getReferences())->toContain($reference1, $reference2);
+});
+
+it('returns itself after adding references', function (): void {
+    $reference = new Reference(name: 'John Smith', reference: 'Great team player');
+
+    $result = $this->resume->addReferences($reference);
+
+    expect($result)->toBe($this->resume);
+});
+
+it('can retrieve added references', function (): void {
+    $reference = new Reference(name: 'John Smith', reference: 'Great team player');
+
+    $this->resume->addReferences($reference);
+
+    $retrievedReferences = $this->resume->getReferences();
+
+    expect($retrievedReferences)->toBeArray()
+        ->and($retrievedReferences[0])->toBe($reference);
 });

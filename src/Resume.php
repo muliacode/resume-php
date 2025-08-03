@@ -11,6 +11,7 @@ use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Interest;
 use Muliacode\Resume\Models\Language;
 use Muliacode\Resume\Models\Publication;
+use Muliacode\Resume\Models\Reference;
 use Muliacode\Resume\Models\Skill;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
@@ -71,6 +72,11 @@ final class Resume
      * @var Interest[]
      */
     private array $interests = [];
+
+    /**
+     * @var Reference[]
+     */
+    private array $references = [];
 
     public function __construct()
     {
@@ -248,6 +254,23 @@ final class Resume
     public function getInterests(): array
     {
         return $this->interests;
+    }
+
+    public function addReferences(Reference ...$references): self
+    {
+        foreach ($references as $item) {
+            $this->references[] = $item;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Reference[]
+     */
+    public function getReferences(): array
+    {
+        return $this->references;
     }
 
     /**
