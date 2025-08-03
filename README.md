@@ -9,7 +9,7 @@ A lightweight PHP package for creating and exporting resume profiles to standard
 You can install the package via composer:
 
 ```bash
-composer require muliacode/resumify
+composer require muliacode/resumify-php
 ```
 
 ## Usage
