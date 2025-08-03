@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Volunteer;
@@ -262,4 +263,68 @@ it('can convert to JSON string', function (): void {
     expect($json)->toBeString()
         ->and($array)->toBeArray()
         ->and($array)->toHaveKey('basics');
+});
+
+it('can add a single award', function (): void {
+    $award = new Award(
+        title: 'Best Developer',
+        date: '2023-05-01',
+        awarder: 'Tech World',
+        summary: 'Awarded for exceptional software development skills'
+    );
+
+    $this->resume->addAwards($award);
+
+    expect($this->resume->getAwards())->toHaveCount(1)
+        ->and($this->resume->getAwards()[0])->toBe($award);
+});
+
+it('can add multiple awards', function (): void {
+    $award1 = new Award(
+        title: 'Best Developer',
+        date: '2023-05-01',
+        awarder: 'Tech World',
+        summary: 'Awarded for exceptional software development skills'
+    );
+
+    $award2 = new Award(
+        title: 'Innovation Award',
+        date: '2024-08-01',
+        awarder: 'Software Pioneers',
+        summary: 'Awarded for innovative software solutions'
+    );
+
+    $this->resume->addAwards($award1, $award2);
+
+    expect($this->resume->getAwards())->toHaveCount(2)
+        ->and($this->resume->getAwards())->toContain($award1, $award2);
+});
+
+it('returns itself after adding awards', function (): void {
+    $award = new Award(
+        title: 'Best Developer',
+        date: '2023-05-01',
+        awarder: 'Tech World',
+        summary: 'Awarded for exceptional software development skills'
+    );
+
+    $result = $this->resume->addAwards($award);
+
+    expect($result)->toBe($this->resume);
+});
+
+it('can retrieve added awards', function (): void {
+    $award = new Award(
+        title: 'Best Developer',
+        date: '2023-05-01',
+        awarder: 'Tech World',
+        summary: 'Awarded for exceptional software development skills'
+    );
+
+    $this->resume->addAwards($award);
+
+    $retrievedAwards = $this->resume->getAwards();
+
+    expect($retrievedAwards)->toBeArray()
+        ->and($retrievedAwards[0])->toBe($award);
 });
