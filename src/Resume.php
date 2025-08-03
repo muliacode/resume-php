@@ -9,6 +9,7 @@ use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Publication;
+use Muliacode\Resume\Models\Skill;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
 
@@ -53,6 +54,11 @@ final class Resume
      * @var Publication[]
      */
     private array $publications = [];
+
+    /**
+     * @var Skill[]
+     */
+    private array $skills = [];
 
     public function __construct()
     {
@@ -179,6 +185,23 @@ final class Resume
     public function getPublications(): array
     {
         return $this->publications;
+    }
+
+    public function addSkills(Skill ...$skills): self
+    {
+        foreach ($skills as $item) {
+            $this->skills[] = $item;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Skill[]
+     */
+    public function getSkills(): array
+    {
+        return $this->skills;
     }
 
     /**

@@ -7,6 +7,7 @@ use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Publication;
+use Muliacode\Resume\Models\Skill;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
 use Muliacode\Resume\Resume;
@@ -429,4 +430,63 @@ it('can retrieve added awards', function (): void {
 
     expect($retrievedAwards)->toBeArray()
         ->and($retrievedAwards[0])->toBe($award);
+});
+
+it('can add a single skill', function (): void {
+    $skill = new Skill(
+        name: 'PHP',
+        level: 'Expert',
+        keywords: ['OOP', 'Laravel', 'Testing']
+    );
+
+    $this->resume->addSkills($skill);
+
+    expect($this->resume->getSkills())->toHaveCount(1)
+        ->and($this->resume->getSkills()[0])->toBe($skill);
+});
+
+it('can add multiple skills', function (): void {
+    $skill1 = new Skill(
+        name: 'PHP',
+        level: 'Expert',
+        keywords: ['OOP', 'Laravel', 'Testing']
+    );
+
+    $skill2 = new Skill(
+        name: 'JavaScript',
+        level: 'Intermediate',
+        keywords: ['React', 'Vue', 'Node']
+    );
+
+    $this->resume->addSkills($skill1, $skill2);
+
+    expect($this->resume->getSkills())->toHaveCount(2)
+        ->and($this->resume->getSkills())->toContain($skill1, $skill2);
+});
+
+it('returns itself after adding skills', function (): void {
+    $skill = new Skill(
+        name: 'PHP',
+        level: 'Expert',
+        keywords: ['OOP', 'Laravel', 'Testing']
+    );
+
+    $result = $this->resume->addSkills($skill);
+
+    expect($result)->toBe($this->resume);
+});
+
+it('can retrieve added skills', function (): void {
+    $skill = new Skill(
+        name: 'PHP',
+        level: 'Expert',
+        keywords: ['OOP', 'Laravel', 'Testing']
+    );
+
+    $this->resume->addSkills($skill);
+
+    $retrievedSkills = $this->resume->getSkills();
+
+    expect($retrievedSkills)->toBeArray()
+        ->and($retrievedSkills[0])->toBe($skill);
 });
