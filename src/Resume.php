@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Muliacode\Resume;
 
 use Muliacode\Resume\Models\Basics;
+use Muliacode\Resume\Models\Work;
 
 /**
  * Resume Facade
@@ -17,6 +18,10 @@ use Muliacode\Resume\Models\Basics;
 final class Resume
 {
     private Basics $basics;
+    /**
+     * @var Work[]
+     */
+    private array $work = [];
 
     public function __construct()
     {
@@ -41,6 +46,23 @@ final class Resume
 
         $this->basics = $value;
         return $this->basics;
+    }
+
+    public function addWork(Work ...$work): self
+    {
+        foreach ($work as $item) {
+            $this->work[] = $item;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Work[]
+     */
+    public function getWork(): array
+    {
+        return $this->work;
     }
 
     /**

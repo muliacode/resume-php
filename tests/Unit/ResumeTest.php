@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Muliacode\Resume\Models\Basics;
+use Muliacode\Resume\Models\Work;
 use Muliacode\Resume\Resume;
 
 beforeEach(function (): void {
@@ -32,6 +33,74 @@ it('can set personal information via property', function (): void {
 
 it('returns itself from done method', function (): void {
     $result = $this->resume->done();
+    expect($result)->toBe($this->resume);
+});
+
+it('can add a single work experience', function (): void {
+    $work = new Work(
+        name: 'Company A',
+        location: 'New York',
+        description: 'Developed software solutions',
+        position: 'Software Engineer',
+        url: 'https://companya.com',
+        startDate: '2020-01-01',
+        endDate: '2022-01-01',
+        summary: 'Worked on various projects',
+        highlights: ['Created new features', 'Improved performance']
+    );
+
+    $this->resume->addWork($work);
+
+    expect($this->resume->getWork())->toHaveCount(1)
+        ->and($this->resume->getWork()[0])->toBe($work);
+});
+
+it('can add multiple work experiences', function (): void {
+    $work1 = new Work(
+        name: 'Company A',
+        location: 'New York',
+        description: 'Developed software solutions',
+        position: 'Software Engineer',
+        url: 'https://companya.com',
+        startDate: '2020-01-01',
+        endDate: '2022-01-01',
+        summary: 'Worked on various projects',
+        highlights: ['Created new features', 'Improved performance']
+    );
+
+    $work2 = new Work(
+        name: 'Company B',
+        location: 'San Francisco',
+        description: 'Led project teams',
+        position: 'Project Manager',
+        url: 'https://companyb.com',
+        startDate: '2022-02-01',
+        endDate: '2025-01-01',
+        summary: 'Successfully delivered multiple projects',
+        highlights: ['Achieved tight deadlines', 'Managed budgets']
+    );
+
+    $this->resume->addWork($work1, $work2);
+
+    expect($this->resume->getWork())->toHaveCount(2)
+        ->and($this->resume->getWork())->toContain($work1, $work2);
+});
+
+it('returns itself after adding work experience', function (): void {
+    $work = new Work(
+        name: 'Company A',
+        location: 'New York',
+        description: 'Developed software solutions',
+        position: 'Software Engineer',
+        url: 'https://companya.com',
+        startDate: '2020-01-01',
+        endDate: '2022-01-01',
+        summary: 'Worked on various projects',
+        highlights: ['Created new features', 'Improved performance']
+    );
+
+    $result = $this->resume->addWork($work);
+
     expect($result)->toBe($this->resume);
 });
 
