@@ -6,6 +6,7 @@ use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
+use Muliacode\Resume\Models\Interest;
 use Muliacode\Resume\Models\Language;
 use Muliacode\Resume\Models\Publication;
 use Muliacode\Resume\Models\Skill;
@@ -510,7 +511,59 @@ it('can add multiple languages', function (): void {
     expect($this->resume->getLanguages())->toHaveCount(2)
         ->and($this->resume->getLanguages())->toContain($language1, $language2);
 });
+it('can add a single interest', function (): void {
+    $interest = new Interest(
+        name: 'Music',
+        keywords: ['Piano', 'Guitar', 'Classical']
+    );
 
+    $this->resume->addInterests($interest);
+
+    expect($this->resume->getInterests())->toHaveCount(1)
+        ->and($this->resume->getInterests()[0])->toBe($interest);
+});
+
+it('can add multiple interests', function (): void {
+    $interest1 = new Interest(
+        name: 'Music',
+        keywords: ['Piano', 'Guitar', 'Classical']
+    );
+
+    $interest2 = new Interest(
+        name: 'Sports',
+        keywords: ['Soccer', 'Basketball', 'Tennis']
+    );
+
+    $this->resume->addInterests($interest1, $interest2);
+
+    expect($this->resume->getInterests())->toHaveCount(2)
+        ->and($this->resume->getInterests())->toContain($interest1, $interest2);
+});
+
+it('returns itself after adding interests', function (): void {
+    $interest = new Interest(
+        name: 'Music',
+        keywords: ['Piano', 'Guitar', 'Classical']
+    );
+
+    $result = $this->resume->addInterests($interest);
+
+    expect($result)->toBe($this->resume);
+});
+
+it('can retrieve added interests', function (): void {
+    $interest = new Interest(
+        name: 'Music',
+        keywords: ['Piano', 'Guitar', 'Classical']
+    );
+
+    $this->resume->addInterests($interest);
+
+    $retrievedInterests = $this->resume->getInterests();
+
+    expect($retrievedInterests)->toBeArray()
+        ->and($retrievedInterests[0])->toBe($interest);
+});
 it('returns itself after adding languages', function (): void {
     $language = new Language(language: 'English', fluency: 'Native');
 
