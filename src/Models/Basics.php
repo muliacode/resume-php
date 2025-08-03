@@ -16,6 +16,7 @@ final class Basics
      * @param string|null $phone The phone number.
      * @param string|null $url The website URL.
      * @param string|null $summary A summary or description.
+     * @param Location|null $location The location.
      *
      * @return void
      */
@@ -27,6 +28,7 @@ final class Basics
         private ?string $phone = null,
         private ?string $url = null,
         private ?string $summary = null,
+        private ?Location $location = null,
     ) {
         // TODO: Add Validation such as email and phonenumber.
     }
@@ -41,6 +43,7 @@ final class Basics
      * @param string|null $phone A phone number associated with the instance.
      * @param string|null $url A URL associated with the instance.
      * @param string|null $summary A summary or description of the instance.
+     * @param Location|null $location A location of the instance
      *
      * @return self Returns a new instance of the class.
      */
@@ -52,8 +55,9 @@ final class Basics
         ?string $phone = null,
         ?string $url = null,
         ?string $summary = null,
+        ?Location $location = null,
     ): self {
-        return new self($name, $label, $image, $email, $phone, $url, $summary);
+        return new self($name, $label, $image, $email, $phone, $url, $summary, $location);
     }
 
     /**
@@ -140,6 +144,17 @@ final class Basics
     public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): self
+    {
+        $this->location = $location;
         return $this;
     }
 }

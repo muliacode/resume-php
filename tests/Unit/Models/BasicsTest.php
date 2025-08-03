@@ -3,8 +3,10 @@
 declare(strict_types=1);
 
 use Muliacode\Resume\Models\Basics;
+use Muliacode\Resume\Models\Location;
 
 it('can be instantiated with constructor parameter and all data', function (): void {
+    $location = Location::create();
     $personalInfo = new Basics(
         name: 'John Doe',
         label: 'Software Engineer',
@@ -12,7 +14,8 @@ it('can be instantiated with constructor parameter and all data', function (): v
         email: 'john@example.com',
         phone: '123-456-7890',
         url: 'https://john.doe',
-        summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        location: $location
     );
 
     expect($personalInfo->getName())->toBe('John Doe')
@@ -21,7 +24,8 @@ it('can be instantiated with constructor parameter and all data', function (): v
         ->and($personalInfo->getLabel())->toBe('Software Engineer')
         ->and($personalInfo->getImage())->toBe('john.jpg')
         ->and($personalInfo->getUrl())->toBe('https://john.doe')
-        ->and($personalInfo->getSummary())->toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+        ->and($personalInfo->getSummary())->toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+        ->and($personalInfo->getLocation())->toBe($location);
 });
 
 it('can be instantiated with setts and all data', function (): void {
@@ -32,7 +36,8 @@ it('can be instantiated with setts and all data', function (): void {
         ->setEmail('john@example.com')
         ->setPhone('123-456-7890')
         ->setUrl('https://john.doe')
-        ->setSummary('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+        ->setSummary('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+        ->setLocation(Location::create());
 
 
     expect($personalInfo->getName())->toBe('John Doe')
@@ -41,7 +46,8 @@ it('can be instantiated with setts and all data', function (): void {
         ->and($personalInfo->getLabel())->toBe('Software Engineer')
         ->and($personalInfo->getImage())->toBe('john.jpg')
         ->and($personalInfo->getUrl())->toBe('https://john.doe')
-        ->and($personalInfo->getSummary())->toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+        ->and($personalInfo->getSummary())->toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+        ->and($personalInfo->getLocation())->toBeInstanceOf(Location::class);
 });
 
 it('can be instantiated with constructor parameters', function (): void {
