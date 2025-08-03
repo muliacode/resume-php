@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Muliacode\Resume\Models;
 
 use Muliacode\Resume\Traits\DateValidationTrait;
+use JsonSerializable;
 
-final class Award
+final class Award implements JsonSerializable
 {
     use DateValidationTrait;
 
@@ -76,5 +77,18 @@ final class Award
     {
         $this->summary = $summary;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+          'title' => $this->title,
+          'date' => $this->date,
+          'awarder' => $this->awarder,
+          'summary' => $this->summary,
+        ];
     }
 }

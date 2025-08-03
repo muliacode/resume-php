@@ -6,8 +6,9 @@ namespace Muliacode\Resume\Models;
 
 use Muliacode\Resume\Enums\Network;
 use Muliacode\Resume\Traits\UrlValidationTrait;
+use JsonSerializable;
 
-final class Profile
+final class Profile implements JsonSerializable
 {
     use UrlValidationTrait;
     public function __construct(
@@ -51,5 +52,17 @@ final class Profile
     {
         $this->url = $url;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'network' => $this->network->value,
+            'username' => $this->username,
+            'url' => $this->url,
+        ];
     }
 }

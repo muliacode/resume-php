@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Muliacode\Resume\Models;
 
 use Muliacode\Resume\Enums\SkillLevel;
+use JsonSerializable;
 
-final class Skill
+final class Skill implements JsonSerializable
 {
     public function __construct(
         private ?string $name = null,
@@ -70,5 +71,17 @@ final class Skill
     {
         $this->keywords = $keywords;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->name,
+            'level' => $this->level?->value,
+            'keywords' => $this->keywords,
+        ];
     }
 }

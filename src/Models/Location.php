@@ -6,8 +6,9 @@ namespace Muliacode\Resume\Models;
 
 use Muliacode\Resume\Traits\CountryCodeValidationTrait;
 use Muliacode\Resume\Traits\PostalCodeValidationTrait;
+use JsonSerializable;
 
-final class Location
+final class Location implements JsonSerializable
 {
     use CountryCodeValidationTrait;
     use PostalCodeValidationTrait;
@@ -92,5 +93,19 @@ final class Location
         $this->validatePostalCode($this->postalCode, $this->countryCode);
 
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+          'address' => $this->address,
+          'postalCode' => $this->postalCode,
+          'city' => $this->city,
+          'countryCode' => $this->countryCode,
+          'region' => $this->region,
+        ];
     }
 }

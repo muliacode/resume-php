@@ -776,6 +776,148 @@ it('can create a complete valid resume', function (): void {
         issuer: 'PHP Foundation'
     ));
 
+    //    $resume->addPublications(Publication::create(
+    //        name: 'Modern PHP Development',
+    //        publisher: 'Tech Books Inc',
+    //        releaseDate: '2023-03-01',
+    //        url: 'https://techbooks.com/modern-php',
+    //        summary: 'Comprehensive guide to PHP development'
+    //    ));
+
+    $resume->addSkills(Skill::create(
+        name: 'PHP',
+        level: SkillLevel::Beginner,
+        keywords: ['Laravel', 'Symfony', 'Testing']
+    ));
+
+    $resume->addLanguages(Language::create(
+        language: 'English',
+        fluency:  LanguageFluencyLevel::NATIVE
+    ));
+
+    $resume->addInterests(Interest::create(
+        name: 'Open Source',
+        keywords: ['PHP', 'JavaScript', 'Community']
+    ));
+
+    $resume->addReferences(Reference::create(
+        name: 'Jane Smith',
+        reference: 'Excellent team player and technical leader'
+    ));
+
+    $resume->addProjects(Project::create(
+        name: 'Enterprise CMS',
+        description: 'Built a custom CMS',
+        highlights: ['Scalable architecture'],
+        keywords: ['PHP', 'Laravel', 'Vue.js'],
+        startDate: '2022-01-01',
+        endDate: '2023-06-30',
+        url: 'https://project-cms.com',
+        roles: ['Lead Developer'],
+        entity: 'Tech Corp',
+        type: 'Professional'
+    ), Project::create('CRM System'));
+
+    $resume->validate();
+
+    $summary = $resume->summarize();
+
+    expect($summary)->toBeArray()
+        ->and($summary["name"])->toBe("John Doe")
+        ->and($summary["email"])->toBe("john@example.com")
+        ->and($summary["work_experiences"])->toBe(1)
+        ->and($summary["education_entries"])->toBe(1)
+        ->and($summary["skills"])->toBe(1)
+        ->and($summary["languages"])->toBe(1)
+        ->and($summary["certificates"])->toBe(1)
+        ->and($summary["projects"])->toBe(2)
+        ->and($summary["awards"])->toBe(1)
+        ->and($summary["has_awards"])->toBeTrue()
+        ->and($summary["publications"])->toBe(0)
+        ->and($summary["has_publications"])->toBeFalse();
+});
+
+test('jsonSerialize serializes an empty Resume correctly', function (): void {
+    $resume = Resume::create();
+    $json = $resume->jsonSerialize();
+
+    expect(array_keys($json))->toContain('basics')
+        ->and($json['basics'])->not->toBeNull()
+        ->and($json)->not->toHaveKey('work')
+        ->and($json)->not->toHaveKey('skills')
+        ->and($json)->not->toHaveKey('languages');
+});
+
+test('jsonSerialize serializes a Resume with data correctly', function (): void {
+    $resume = Resume::create();
+
+    $resume->basics(Basics::create(
+        name: 'John Doe',
+        label: 'Software Developer',
+        image: 'https://example.com/photo.jpg',
+        email: 'john@example.com',
+        phone: '(555) 555-5555',
+        url: 'https://johndoe.com',
+        summary: 'Experienced software developer with 10+ years in the industry',
+        location: Location::create(
+            address: "Stationsstraat 7",
+            postalCode: '1000AA',
+            city: 'Amsterdam',
+            countryCode: 'NL',
+            region: 'Noord-Holland'
+        ),
+        profiles: [
+            Profile::create(Network::Github, 'johndoe', 'https://github.com/johndoe'),
+        ]
+    ));
+
+    $resume->addWork(new Work(
+        name: 'Tech Corp',
+        location: 'New York',
+        description: 'Enterprise software development',
+        position: 'Senior Developer',
+        url: 'https://techcorp.com',
+        startDate: '2020-01-01',
+        endDate: '2023-12-31',
+        summary: 'Led development team',
+        highlights: ['Increased performance by 50%']
+    ));
+
+    $resume->addVolunteer(new Volunteer(
+        organization: 'Code for Good',
+        position: 'Mentor',
+        url: 'https://codeforgood.org',
+        startDate: '2022-01-01',
+        endDate: '2023-12-31',
+        summary: 'Mentored junior developers',
+        highlights: ['Helped 20+ developers']
+    ));
+
+    $resume->addEducation(Education::create(
+        institution: 'Tech University',
+        url: 'https://techuniversity.edu',
+        area: 'Computer Science',
+        studyType: EducationType::Bachelor,
+        startDate: '2010-09-01',
+        endDate: '2014-05-31',
+        score: 3.8,
+        courses: ['Data Structures', 'Algorithms']
+    ));
+
+    $resume->addAwards(Award::create(
+        title: 'Developer of the Year',
+        date: '2023-12-01',
+        awarder: 'Tech Association',
+        summary: 'Recognition for outstanding contributions'
+    ));
+
+    $resume->addCertificates(Certificate::create(
+        name: 'Advanced PHP Certification',
+        date: '2023-06-15',
+        url: 'https://cert.php-foundation.org/12345',
+        issuer: 'PHP Foundation'
+    ));
+
     $resume->addPublications(Publication::create(
         name: 'Modern PHP Development',
         publisher: 'Tech Books Inc',
@@ -816,7 +958,35 @@ it('can create a complete valid resume', function (): void {
         roles: ['Lead Developer'],
         entity: 'Tech Corp',
         type: 'Professional'
-    ));
+    ), Project::create('CRM System'));
 
     $resume->validate();
-})->throwsNoExceptions();
+
+    $json = $resume->jsonSerialize();
+
+    expect(array_keys($json))->toContain(
+        'basics',
+        'work',
+        'skills',
+        'languages',
+        'publications',
+        'awards',
+        'certificates',
+        'projects',
+        'interests',
+        'references',
+        'volunteer',
+        'education'
+    )
+        ->and($json['work'])->toHaveCount(1)
+        ->and($json['skills'])->toHaveCount(1)
+        ->and($json['languages'])->toHaveCount(1)
+        ->and($json['publications'])->toHaveCount(1)
+        ->and($json['awards'])->toHaveCount(1)
+        ->and($json['certificates'])->toHaveCount(1)
+        ->and($json['projects'])->toHaveCount(2)
+        ->and($json['interests'])->toHaveCount(1)
+        ->and($json['references'])->toHaveCount(1)
+        ->and($json['volunteer'])->toHaveCount(1)
+        ->and($json['education'])->toHaveCount(1);
+});

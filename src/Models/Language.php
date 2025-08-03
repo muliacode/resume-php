@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Muliacode\Resume\Models;
 
 use Muliacode\Resume\Enums\LanguageFluencyLevel;
+use JsonSerializable;
 
-final class Language
+final class Language implements JsonSerializable
 {
     public function __construct(
         private ?string $language = null,
@@ -39,5 +40,16 @@ final class Language
     {
         $this->fluency = $fluency;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'language' => $this->language,
+            'fluency' => $this->fluency?->description(),
+        ];
     }
 }

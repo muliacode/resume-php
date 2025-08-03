@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
-final class Reference
+use JsonSerializable;
+
+final class Reference implements JsonSerializable
 {
     public function __construct(
         private ?string $name = null,
@@ -39,5 +41,16 @@ final class Reference
     {
         $this->reference = $reference;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->name,
+            'reference' => $this->reference,
+        ];
     }
 }

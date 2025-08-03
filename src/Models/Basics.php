@@ -7,8 +7,9 @@ namespace Muliacode\Resume\Models;
 use Muliacode\Resume\Traits\EmailValidationTrait;
 use Muliacode\Resume\Traits\PhoneNumberValidationTrait;
 use Muliacode\Resume\Traits\UrlValidationTrait;
+use JsonSerializable;
 
-final class Basics
+final class Basics implements JsonSerializable
 {
     use EmailValidationTrait;
     use PhoneNumberValidationTrait;
@@ -193,5 +194,23 @@ final class Basics
     {
         $this->profiles = $profiles;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->name,
+            'label' => $this->label,
+            'image' => $this->image,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'url' => $this->url,
+            'summary' => $this->summary,
+            'location' => $this->location?->jsonSerialize(),
+            'profiles' => array_map(fn (Profile $profile): array => $profile->jsonSerialize(), $this->profiles),
+        ];
     }
 }

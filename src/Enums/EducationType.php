@@ -6,11 +6,11 @@ namespace Muliacode\Resume\Enums;
 
 enum EducationType: string
 {
-    case Secondary = "secondary";
-    case HighSchool = "high_school";
-    case Associate = "associate";
-    case Bachelor = "bachelor";
-    case Master = "master";
-    case Doctorate = "doctorate";
-    case Other = "other";
+    case Secondary = "Secondary";
+    case HighSchool = "High School";
+    case Associate = "Associate";
+    case Bachelor = "Bachelor";
+    case Master = "Master";
+    case Doctorate = "Doctorate";
+    case Other = "Other";
 }

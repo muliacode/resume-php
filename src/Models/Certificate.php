@@ -6,8 +6,9 @@ namespace Muliacode\Resume\Models;
 
 use Muliacode\Resume\Traits\DateValidationTrait;
 use Muliacode\Resume\Traits\UrlValidationTrait;
+use JsonSerializable;
 
-final class Certificate
+final class Certificate implements JsonSerializable
 {
     use DateValidationTrait;
     use UrlValidationTrait;
@@ -80,5 +81,18 @@ final class Certificate
     {
         $this->issuer = $issuer;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->name,
+            'date' => $this->date,
+            'url' => $this->url,
+            'issuer' => $this->issuer,
+        ];
     }
 }

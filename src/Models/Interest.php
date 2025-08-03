@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
-final class Interest
+use JsonSerializable;
+
+final class Interest implements JsonSerializable
 {
     public function __construct(
         private ?string $name = null,
@@ -53,5 +55,16 @@ final class Interest
     {
         $this->keywords = $keywords;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+          'name' => $this->name,
+          'keywords' => $this->keywords,
+        ];
     }
 }

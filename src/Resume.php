@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume;
 
+use Muliacode\Resume\Enums\ResumeSection;
 use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Certificate;
@@ -16,6 +17,7 @@ use Muliacode\Resume\Models\Reference;
 use Muliacode\Resume\Models\Skill;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
+use JsonSerializable;
 
 /**
  * Resume Facade
@@ -25,7 +27,7 @@ use Muliacode\Resume\Models\Work;
  * using the JSON-resume standard format.
  *
  */
-final class Resume
+final class Resume implements JsonSerializable
 {
     private Basics $basics;
 
@@ -341,5 +343,59 @@ final class Resume
         }
 
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function summarize(): array
+    {
+        return [
+            'name' => $this->basics->getName(),
+            'email' => $this->basics->getEmail(),
+            'work_experiences' => count($this->work),
+            'education_entries' => count($this->education),
+            'skills' => count($this->skills),
+            'projects' => count($this->projects),
+            'languages' => count($this->languages),
+            'certificates' => count($this->certificates),
+            'awards' => count($this->awards),
+            'has_awards' => $this->awards !== [],
+            'publications' => count($this->publications),
+            'has_publications' => $this->publications !== [],
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        $data = [
+            'basics' => $this->basics->jsonSerialize(),
+        ];
+
+        foreach (ResumeSection::cases() as $section) {
+            $propertyName = $section->getPropertyName();
+            $sectionItems = $this->{$propertyName};
+
+            if (!empty($sectionItems)) {
+                $data[$propertyName] = $this->serializeItems($sectionItems);
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param array<mixed> $items
+     * @return array<mixed>
+     */
+    private function serializeItems(array $items): array
+    {
+        return array_map(
+            static fn ($item) => $item->jsonSerialize(),
+            $items
+        );
     }
 }

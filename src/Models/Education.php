@@ -7,8 +7,9 @@ namespace Muliacode\Resume\Models;
 use Muliacode\Resume\Enums\EducationType;
 use Muliacode\Resume\Traits\DateValidationTrait;
 use Muliacode\Resume\Traits\UrlValidationTrait;
+use JsonSerializable;
 
-final class Education
+final class Education implements JsonSerializable
 {
     use DateValidationTrait;
     use UrlValidationTrait;
@@ -153,5 +154,22 @@ final class Education
     {
         $this->courses = $courses;
         return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'institution' => $this->institution,
+            'url' => $this->url,
+            'area' => $this->area,
+            'studyType' => $this->studyType?->value,
+            'startDate' => $this->startDate,
+            'endDate' => $this->endDate,
+            'score' => is_null($this->score) ? null : number_format($this->score, 2, '.', ''),
+            'courses' => $this->courses,
+        ];
     }
 }

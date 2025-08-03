@@ -6,8 +6,9 @@ namespace Muliacode\Resume\Models;
 
 use Muliacode\Resume\Traits\DateValidationTrait;
 use Muliacode\Resume\Traits\UrlValidationTrait;
+use JsonSerializable;
 
-final class Work
+final class Work implements JsonSerializable
 {
     use DateValidationTrait;
     use UrlValidationTrait;
@@ -161,5 +162,20 @@ final class Work
     {
         $this->highlights = $highlights;
         return $this;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'name' => $this->name,
+            'location' => $this->location,
+            'description' => $this->description,
+            'position' => $this->position,
+            'url' => $this->url,
+            'startDate' => $this->startDate,
+            'endDate' => $this->endDate,
+            'summary' => $this->summary,
+            'highlights' => $this->highlights,
+        ];
     }
 }
