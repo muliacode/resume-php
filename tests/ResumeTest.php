@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
+use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
@@ -113,6 +114,54 @@ it('can retrieve added volunteer experiences', function (): void {
 });
 it('returns itself from done method', function (): void {
     $result = $this->resume->done();
+    expect($result)->toBe($this->resume);
+});
+
+it('can add a single certificate', function (): void {
+    $certificate = new Certificate(
+        name: 'Certified PHP Developer',
+        date: '2023-06-01',
+        url: 'https://certification.com/certificate/123',
+        issuer: 'PHP Certification Authority'
+    );
+
+    $this->resume->addCertificates($certificate);
+
+    expect($this->resume->getCertificates())->toHaveCount(1)
+        ->and($this->resume->getCertificates()[0])->toBe($certificate);
+});
+
+it('can add multiple certificates', function (): void {
+    $certificate1 = new Certificate(
+        name: 'Certified PHP Developer',
+        date: '2023-06-01',
+        url: 'https://certification.com/certificate/123',
+        issuer: 'PHP Certification Authority'
+    );
+
+    $certificate2 = new Certificate(
+        name: 'Certified JavaScript Developer',
+        date: '2024-05-15',
+        url: 'https://certification.com/certificate/456',
+        issuer: 'JS Certification Board'
+    );
+
+    $this->resume->addCertificates($certificate1, $certificate2);
+
+    expect($this->resume->getCertificates())->toHaveCount(2)
+        ->and($this->resume->getCertificates())->toContain($certificate1, $certificate2);
+});
+
+it('returns itself after adding certificates', function (): void {
+    $certificate = new Certificate(
+        name: 'Certified PHP Developer',
+        date: '2023-06-01',
+        url: 'https://certification.com/certificate/123',
+        issuer: 'PHP Certification Authority'
+    );
+
+    $result = $this->resume->addCertificates($certificate);
+
     expect($result)->toBe($this->resume);
 });
 

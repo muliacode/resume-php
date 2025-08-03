@@ -6,6 +6,7 @@ namespace Muliacode\Resume;
 
 use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
+use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
@@ -41,6 +42,11 @@ final class Resume
      * @var Award[]
      */
     private array $awards = [];
+
+    /**
+     * @var Certificate[]
+     */
+    private array $certificates = [];
 
     public function __construct()
     {
@@ -133,6 +139,23 @@ final class Resume
     public function getAwards(): array
     {
         return $this->awards;
+    }
+
+    public function addCertificates(Certificate ...$certificates): self
+    {
+        foreach ($certificates as $item) {
+            $this->certificates[] = $item;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Certificate[]
+     */
+    public function getCertificates(): array
+    {
+        return $this->certificates;
     }
 
     /**
