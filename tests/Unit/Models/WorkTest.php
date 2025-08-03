@@ -9,15 +9,15 @@ use Muliacode\Resume\Models\Work;
 test('it initializes with all properties set to null by default', function (): void {
     $work = new Work();
 
-    expect($work->name)->toBeNull()
-        ->and($work->location)->toBeNull()
-        ->and($work->description)->toBeNull()
-        ->and($work->position)->toBeNull()
-        ->and($work->url)->toBeNull()
-        ->and($work->startDate)->toBeNull()
-        ->and($work->endDate)->toBeNull()
-        ->and($work->summary)->toBeNull()
-        ->and($work->highlights)->toBeNull();
+    expect($work->getName())->toBeNull()
+        ->and($work->getLocation())->toBeNull()
+        ->and($work->getDescription())->toBeNull()
+        ->and($work->getPosition())->toBeNull()
+        ->and($work->getUrl())->toBeNull()
+        ->and($work->getStartDate())->toBeNull()
+        ->and($work->getEndDate())->toBeNull()
+        ->and($work->getSummary())->toBeNull()
+        ->and($work->getHighlights())->toBeNull();
 });
 
 test('it creates an instance with given values using the create method', function (): void {
@@ -33,29 +33,52 @@ test('it creates an instance with given values using the create method', functio
         highlights: ['Highlight 1', 'Highlight 2']
     );
 
-    expect($work->name)->toBe('Company Name')
-        ->and($work->location)->toBe('City, Country')
-        ->and($work->description)->toBe('Job description')
-        ->and($work->position)->toBe('Developer')
-        ->and($work->url)->toBe('https://example.com')
-        ->and($work->startDate)->toBe('2023-01-01')
-        ->and($work->endDate)->toBe('2025-01-01')
-        ->and($work->summary)->toBe('Summary of the work')
-        ->and($work->highlights)->toBe(['Highlight 1', 'Highlight 2']);
+    expect($work->getName())->toBe('Company Name')
+        ->and($work->getLocation())->toBe('City, Country')
+        ->and($work->getDescription())->toBe('Job description')
+        ->and($work->getPosition())->toBe('Developer')
+        ->and($work->getUrl())->toBe('https://example.com')
+        ->and($work->getStartDate())->toBe('2023-01-01')
+        ->and($work->getEndDate())->toBe('2025-01-01')
+        ->and($work->getSummary())->toBe('Summary of the work')
+        ->and($work->getHighlights())->toBe(['Highlight 1', 'Highlight 2']);
+});
+
+test('it creates an instance with given values using setters', function (): void {
+    $work = Work::create()
+        ->setName('Company Name')
+        ->setLocation('City, Country')
+        ->setDescription('Job description')
+        ->setPosition('Developer')
+        ->setUrl('https://example.com')
+        ->setStartDate('2023-01-01')
+        ->setEndDate('2025-01-01')
+        ->setSummary('Summary of the work')
+        ->setHighlights(['Highlight 1', 'Highlight 2']);
+
+    expect($work->getName())->toBe('Company Name')
+        ->and($work->getLocation())->toBe('City, Country')
+        ->and($work->getDescription())->toBe('Job description')
+        ->and($work->getPosition())->toBe('Developer')
+        ->and($work->getUrl())->toBe('https://example.com')
+        ->and($work->getStartDate())->toBe('2023-01-01')
+        ->and($work->getEndDate())->toBe('2025-01-01')
+        ->and($work->getSummary())->toBe('Summary of the work')
+        ->and($work->getHighlights())->toBe(['Highlight 1', 'Highlight 2']);
 });
 
 test('it creates an instance with all default null values using the create method', function (): void {
     $work = Work::create();
 
-    expect($work->name)->toBeNull()
-        ->and($work->location)->toBeNull()
-        ->and($work->description)->toBeNull()
-        ->and($work->position)->toBeNull()
-        ->and($work->url)->toBeNull()
-        ->and($work->startDate)->toBeNull()
-        ->and($work->endDate)->toBeNull()
-        ->and($work->summary)->toBeNull()
-        ->and($work->highlights)->toBeNull();
+    expect($work->getName())->toBeNull()
+        ->and($work->getLocation())->toBeNull()
+        ->and($work->getDescription())->toBeNull()
+        ->and($work->getPosition())->toBeNull()
+        ->and($work->getUrl())->toBeNull()
+        ->and($work->getStartDate())->toBeNull()
+        ->and($work->getEndDate())->toBeNull()
+        ->and($work->getSummary())->toBeNull()
+        ->and($work->getHighlights())->toBeNull();
 });
 
 test('it initializes with provided values', function (): void {
@@ -71,13 +94,13 @@ test('it initializes with provided values', function (): void {
         highlights: ['Highlight 1', 'Highlight 2']
     );
 
-    expect($work->name)->toBe('Company Name')
-        ->and($work->location)->toBe('City, Country')
-        ->and($work->description)->toBe('Job description')
-        ->and($work->position)->toBe('Developer')
-        ->and($work->url)->toBe('https://example.com')
-        ->and($work->startDate)->toBe('2023-01-01')
-        ->and($work->endDate)->toBe('2025-01-01')
-        ->and($work->summary)->toBe('Summary of the work')
-        ->and($work->highlights)->toBe(['Highlight 1', 'Highlight 2']);
+    expect($work->getName())->toBe('Company Name')
+        ->and($work->getLocation())->toBe('City, Country')
+        ->and($work->getDescription())->toBe('Job description')
+        ->and($work->getPosition())->toBe('Developer')
+        ->and($work->getUrl())->toBe('https://example.com')
+        ->and($work->getStartDate())->toBe('2023-01-01')
+        ->and($work->getEndDate())->toBe('2025-01-01')
+        ->and($work->getSummary())->toBe('Summary of the work')
+        ->and($work->getHighlights())->toBe(['Highlight 1', 'Highlight 2']);
 });

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Muliacode\Resume\Models\Basics;
+use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
 use Muliacode\Resume\Resume;
 
@@ -30,7 +31,84 @@ it('can set personal information via property', function (): void {
     expect($this->resume->basics())->toBe($newPersonalInfo)
         ->and($this->resume->basics()->getName())->toBe('Jane Doe');
 });
+it('can add a single volunteer experience', function (): void {
+    $volunteer = new Volunteer(
+        organization: 'Volunteer Org A',
+        position: 'Community Helper',
+        url: 'https://volunteerorga.com',
+        startDate: '2023-01-01',
+        endDate: '2024-01-01',
+        summary: 'Assisted in community services',
+        highlights: ['Organized events', 'Improved outreach efforts']
+    );
 
+    $this->resume->addVolunteer($volunteer);
+
+    expect($this->resume->getVolunteer())->toHaveCount(1)
+        ->and($this->resume->getVolunteer()[0])->toBe($volunteer);
+});
+
+it('can add multiple volunteer experiences', function (): void {
+    $volunteer1 = new Volunteer(
+        organization: 'Volunteer Org A',
+        position: 'Community Helper',
+        url: 'https://volunteerorga.com',
+        startDate: '2023-01-01',
+        endDate: '2024-01-01',
+        summary: 'Assisted in community services',
+        highlights: ['Organized events', 'Improved outreach efforts']
+    );
+
+    $volunteer2 = new Volunteer(
+        organization: 'Volunteer Org B',
+        position: 'Event Coordinator',
+        url: 'https://volunteerorgb.com',
+        startDate: '2024-02-01',
+        endDate: '2025-02-01',
+        summary: 'Coordinated team events',
+        highlights: ['Planned successful campaigns', 'Improved teamwork']
+    );
+
+    $this->resume->addVolunteer($volunteer1, $volunteer2);
+
+    expect($this->resume->getVolunteer())->toHaveCount(2)
+        ->and($this->resume->getVolunteer())->toContain($volunteer1, $volunteer2);
+});
+
+it('returns itself after adding volunteer experience', function (): void {
+    $volunteer = new Volunteer(
+        organization: 'Volunteer Org A',
+        position: 'Community Helper',
+        url: 'https://volunteerorga.com',
+        startDate: '2023-01-01',
+        endDate: '2024-01-01',
+        summary: 'Assisted in community services',
+        highlights: ['Organized events', 'Improved outreach efforts']
+    );
+
+    $result = $this->resume->addVolunteer($volunteer);
+
+    expect($result)->toBe($this->resume);
+});
+
+it('can retrieve added volunteer experiences', function (): void {
+    $volunteer = new Volunteer(
+        organization: 'Volunteer Org A',
+        position: 'Community Helper',
+        url: 'https://volunteerorga.com',
+        startDate: '2023-01-01',
+        endDate: '2024-01-01',
+        summary: 'Assisted in community services',
+        highlights: ['Organized events', 'Improved outreach efforts']
+    );
+
+    $this->resume->addVolunteer($volunteer);
+
+    $retrievedVolunteers = $this->resume->getVolunteer();
+
+    expect($retrievedVolunteers)->toBeArray()
+        ->and($retrievedVolunteers[0])->toBe($volunteer);
+});
 it('returns itself from done method', function (): void {
     $result = $this->resume->done();
     expect($result)->toBe($this->resume);

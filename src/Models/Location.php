@@ -7,11 +7,11 @@ namespace Muliacode\Resume\Models;
 final class Location
 {
     public function __construct(
-        public ?string $address = null,
-        public ?string $postalCode = null,
-        public ?string $city = null,
-        public ?string $countryCode = null,
-        public ?string $region = null
+        private ?string $address = null,
+        private ?string $postalCode = null,
+        private ?string $city = null,
+        private ?string $countryCode = null,
+        private ?string $region = null
     ) {
         // TODO: Validate Country Code to be as per ISO-3166-1 ALPHA-2
     }

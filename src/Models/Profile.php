@@ -9,9 +9,9 @@ use Muliacode\Resume\Enums\Network;
 final class Profile
 {
     public function __construct(
-        public Network $network,
-        public string $username,
-        public ?string $url = null,
+        private readonly Network $network,
+        private readonly string $username,
+        private ?string $url = null,
     ) {
         // TODO: Validate URL
     }

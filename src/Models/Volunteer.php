@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
-final class Work
+final class Volunteer
 {
     public function __construct(
-        private ?string $name = null,
-        private ?string $location = null,
-        private ?string $description = null,
+        private ?string $organization = null,
         private ?string $position = null,
         private ?string $url = null,
         private ?string $startDate = null,
@@ -27,9 +25,7 @@ final class Work
      * @param array<string>|null $highlights
      */
     public static function create(
-        ?string $name = null,
-        ?string $location = null,
-        ?string $description = null,
+        ?string $organization = null,
         ?string $position = null,
         ?string $url = null,
         ?string $startDate = null,
@@ -37,39 +33,17 @@ final class Work
         ?string $summary = null,
         ?array $highlights = null
     ): self {
-        return new self($name, $location, $description, $position, $url, $startDate, $endDate, $summary, $highlights);
+        return new self($organization, $position, $url, $startDate, $endDate, $summary, $highlights);
     }
 
-    public function getName(): ?string
+    public function getOrganization(): ?string
     {
-        return $this->name;
+        return $this->organization;
     }
 
-    public function setName(?string $name): self
+    public function setOrganization(?string $organization): self
     {
-        $this->name = $name;
-        return $this;
-    }
-
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(?string $location): self
-    {
-        $this->location = $location;
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
+        $this->organization = $organization;
         return $this;
     }
 
