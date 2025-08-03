@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Models;
+namespace Muliacode\Resumify\Models;
 
-use Muliacode\Resume\Enums\Network;
-use Muliacode\Resume\Traits\UrlValidationTrait;
+use Muliacode\Resumify\Enums\Network;
+use Muliacode\Resumify\Traits\UrlValidationTrait;
 use JsonSerializable;
 
 final class Profile implements JsonSerializable

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Traits;
+namespace Muliacode\Resumify\Traits;
 
-use Muliacode\Resume\Exceptions\InvalidUrlException;
+use Muliacode\Resumify\Exceptions\InvalidUrlException;
 use Respect\Validation\Exceptions\ValidationException;
 use Respect\Validation\Validator;
 

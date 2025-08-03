@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Enums\SkillLevel;
-use Muliacode\Resume\Models\Skill;
+use Muliacode\Resumify\Enums\SkillLevel;
+use Muliacode\Resumify\Models\Skill;
 
 test('it can create a skill with all properties', function (): void {
     $level = SkillLevel::Expert;

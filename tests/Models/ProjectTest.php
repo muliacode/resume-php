@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Models\Project;
+use Muliacode\Resumify\Models\Project;
 
 test('it can create a project with all parameters', function (): void {
     $project = Project::create(

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Exceptions;
+namespace Muliacode\Resumify\Exceptions;
 
 use InvalidArgumentException;
 use Throwable;

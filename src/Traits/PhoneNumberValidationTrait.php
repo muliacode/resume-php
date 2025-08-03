@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Traits;
+namespace Muliacode\Resumify\Traits;
 
-use Muliacode\Resume\Exceptions\InvalidPhoneNumberException;
+use Muliacode\Resumify\Exceptions\InvalidPhoneNumberException;
 use Respect\Validation\Exceptions\ValidationException;
 use Respect\Validation\Validator;
 

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume;
+namespace Muliacode\Resumify;
 
-use Muliacode\Resume\Enums\ResumeSection;
-use Muliacode\Resume\Models\Award;
-use Muliacode\Resume\Models\Basics;
-use Muliacode\Resume\Models\Certificate;
-use Muliacode\Resume\Models\Education;
-use Muliacode\Resume\Models\Interest;
-use Muliacode\Resume\Models\Language;
-use Muliacode\Resume\Models\Project;
-use Muliacode\Resume\Models\Publication;
-use Muliacode\Resume\Models\Reference;
-use Muliacode\Resume\Models\Skill;
-use Muliacode\Resume\Models\Volunteer;
-use Muliacode\Resume\Models\Work;
+use Muliacode\Resumify\Enums\ResumeSection;
+use Muliacode\Resumify\Models\Award;
+use Muliacode\Resumify\Models\Basics;
+use Muliacode\Resumify\Models\Certificate;
+use Muliacode\Resumify\Models\Education;
+use Muliacode\Resumify\Models\Interest;
+use Muliacode\Resumify\Models\Language;
+use Muliacode\Resumify\Models\Project;
+use Muliacode\Resumify\Models\Publication;
+use Muliacode\Resumify\Models\Reference;
+use Muliacode\Resumify\Models\Skill;
+use Muliacode\Resumify\Models\Volunteer;
+use Muliacode\Resumify\Models\Work;
 use JsonSerializable;
 
 /**

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Models;
+namespace Muliacode\Resumify\Models;
 
-use Muliacode\Resume\Traits\DateValidationTrait;
-use Muliacode\Resume\Traits\UrlValidationTrait;
+use Muliacode\Resumify\Traits\DateValidationTrait;
+use Muliacode\Resumify\Traits\UrlValidationTrait;
 use JsonSerializable;
 
 final class Work implements JsonSerializable

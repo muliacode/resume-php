@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Muliacode\Resume\Enums\Network;
-use Muliacode\Resume\Models\Profile;
+use Muliacode\Resumify\Enums\Network;
+use Muliacode\Resumify\Models\Profile;
 
 it('can be instantiated with constructor parameter and all data', function (): void {
     $profile = Profile::create(

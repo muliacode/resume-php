@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Enums;
+namespace Muliacode\Resumify\Tests\Enums;
 
-use Muliacode\Resume\Enums\ResumeSection;
+use Muliacode\Resumify\Enums\ResumeSection;
 
 test('it returns the correct property name for WORK', function (): void {
     expect(ResumeSection::WORK->getPropertyName())->toBe('work');

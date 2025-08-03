@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Models;
+namespace Muliacode\Resumify\Models;
 
-use Muliacode\Resume\Enums\SkillLevel;
+use Muliacode\Resumify\Enums\SkillLevel;
 use JsonSerializable;
 
 final class Skill implements JsonSerializable

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Traits;
+namespace Muliacode\Resumify\Tests\Traits;
 
-use Muliacode\Resume\Exceptions\InvalidDateFormatException;
-use Muliacode\Resume\Traits\DateValidationTrait;
+use Muliacode\Resumify\Exceptions\InvalidDateFormatException;
+use Muliacode\Resumify\Traits\DateValidationTrait;
 
 it('validates a valid date in default format', function (): void {
     $trait = new class {

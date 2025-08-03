@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Traits;
+namespace Muliacode\Resumify\Tests\Traits;
 
-use Muliacode\Resume\Exceptions\InvalidUrlException;
-use Muliacode\Resume\Traits\UrlValidationTrait;
+use Muliacode\Resumify\Exceptions\InvalidUrlException;
+use Muliacode\Resumify\Traits\UrlValidationTrait;
 
 test('it does nothing if URL is null', function (): void {
     $trait = new class {

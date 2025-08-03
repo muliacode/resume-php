@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Models\Interest;
+use Muliacode\Resumify\Models\Interest;
 
 test('create method initializes Interest with name and keywords', function (): void {
     $interest = Interest::create('Design', ['Graphics', 'UI/UX']);

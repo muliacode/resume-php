@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Muliacode\Resume\Enums\Network;
-use Muliacode\Resume\Models\Basics;
-use Muliacode\Resume\Models\Location;
-use Muliacode\Resume\Models\Profile;
+use Muliacode\Resumify\Enums\Network;
+use Muliacode\Resumify\Models\Basics;
+use Muliacode\Resumify\Models\Location;
+use Muliacode\Resumify\Models\Profile;
 
 it('can be instantiated with constructor parameter and all data', function (): void {
     $location = Location::create();

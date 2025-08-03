@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Enums;
+namespace Muliacode\Resumify\Tests\Enums;
 
-use Muliacode\Resume\Enums\LanguageFluencyLevel;
+use Muliacode\Resumify\Enums\LanguageFluencyLevel;
 
 test('A1 description is Beginner', function (): void {
     $level = LanguageFluencyLevel::A1;

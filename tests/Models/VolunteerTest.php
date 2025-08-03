@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Models\Volunteer;
+use Muliacode\Resumify\Models\Volunteer;
 
 test('it constructs a volunteer with all properties', function (): void {
     $volunteer = new Volunteer(

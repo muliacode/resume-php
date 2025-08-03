@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Models;
+namespace Muliacode\Resumify\Models;
 
-use Muliacode\Resume\Enums\LanguageFluencyLevel;
+use Muliacode\Resumify\Enums\LanguageFluencyLevel;
 use JsonSerializable;
 
 final class Language implements JsonSerializable

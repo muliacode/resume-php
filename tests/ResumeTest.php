@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-use Muliacode\Resume\Enums\EducationType;
-use Muliacode\Resume\Enums\LanguageFluencyLevel;
-use Muliacode\Resume\Enums\Network;
-use Muliacode\Resume\Enums\SkillLevel;
-use Muliacode\Resume\Models\Award;
-use Muliacode\Resume\Models\Basics;
-use Muliacode\Resume\Models\Certificate;
-use Muliacode\Resume\Models\Education;
-use Muliacode\Resume\Models\Interest;
-use Muliacode\Resume\Models\Language;
-use Muliacode\Resume\Models\Location;
-use Muliacode\Resume\Models\Profile;
-use Muliacode\Resume\Models\Project;
-use Muliacode\Resume\Models\Publication;
-use Muliacode\Resume\Models\Reference;
-use Muliacode\Resume\Models\Skill;
-use Muliacode\Resume\Models\Volunteer;
-use Muliacode\Resume\Models\Work;
-use Muliacode\Resume\Resume;
+use Muliacode\Resumify\Enums\EducationType;
+use Muliacode\Resumify\Enums\LanguageFluencyLevel;
+use Muliacode\Resumify\Enums\Network;
+use Muliacode\Resumify\Enums\SkillLevel;
+use Muliacode\Resumify\Models\Award;
+use Muliacode\Resumify\Models\Basics;
+use Muliacode\Resumify\Models\Certificate;
+use Muliacode\Resumify\Models\Education;
+use Muliacode\Resumify\Models\Interest;
+use Muliacode\Resumify\Models\Language;
+use Muliacode\Resumify\Models\Location;
+use Muliacode\Resumify\Models\Profile;
+use Muliacode\Resumify\Models\Project;
+use Muliacode\Resumify\Models\Publication;
+use Muliacode\Resumify\Models\Reference;
+use Muliacode\Resumify\Models\Skill;
+use Muliacode\Resumify\Models\Volunteer;
+use Muliacode\Resumify\Models\Work;
+use Muliacode\Resumify\Resume;
 
 beforeEach(function (): void {
     $this->resume = Resume::create();

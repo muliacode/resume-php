@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Models\Certificate;
+use Muliacode\Resumify\Models\Certificate;
 
 test('create method returns an instance of Certificate', function (): void {
     $certificate = Certificate::create();

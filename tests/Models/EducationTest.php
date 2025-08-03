@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Enums\EducationType;
-use Muliacode\Resume\Models\Education;
+use Muliacode\Resumify\Enums\EducationType;
+use Muliacode\Resumify\Models\Education;
 
 test('it can create an Education instance with all properties', function (): void {
     $education = Education::create(

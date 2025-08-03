@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Muliacode\Resume\Models\Location;
+use Muliacode\Resumify\Models\Location;
 
 it('can be instantiated with constructor parameter and all data', function (): void {
     $location = Location::create(

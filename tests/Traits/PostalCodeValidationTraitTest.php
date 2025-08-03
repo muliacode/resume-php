@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Traits;
+namespace Muliacode\Resumify\Tests\Traits;
 
-use Muliacode\Resume\Exceptions\InvalidPostalCodeException;
-use Muliacode\Resume\Traits\PostalCodeValidationTrait;
+use Muliacode\Resumify\Exceptions\InvalidPostalCodeException;
+use Muliacode\Resumify\Traits\PostalCodeValidationTrait;
 
 test('validates postal code successfully', function (): void {
     $trait = new class {

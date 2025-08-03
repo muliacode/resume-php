@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Enums;
+namespace Muliacode\Resumify\Enums;
 
 enum EducationType: string
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Enums\LanguageFluencyLevel;
-use Muliacode\Resume\Models\Language;
+use Muliacode\Resumify\Enums\LanguageFluencyLevel;
+use Muliacode\Resumify\Models\Language;
 
 test('it creates a Language instance with null values', function (): void {
     $language = Language::create();

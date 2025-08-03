@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Traits;
+namespace Muliacode\Resumify\Traits;
 
-use Muliacode\Resume\Exceptions\InvalidCountryCodeException;
+use Muliacode\Resumify\Exceptions\InvalidCountryCodeException;
 use Respect\Validation\Exceptions\ValidationException;
 use Respect\Validation\Rules\CountryCode;
 use Respect\Validation\Validator;

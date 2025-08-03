@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Traits;
+namespace Muliacode\Resumify\Tests\Traits;
 
-use Muliacode\Resume\Exceptions\InvalidPhoneNumberException;
-use Muliacode\Resume\Traits\PhoneNumberValidationTrait;
+use Muliacode\Resumify\Exceptions\InvalidPhoneNumberException;
+use Muliacode\Resumify\Traits\PhoneNumberValidationTrait;
 
 test('validatePhoneNumber accepts a valid phone number', function (): void {
     $trait = new class {

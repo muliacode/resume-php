@@ -1,6 +1,6 @@
-# Contributing to Resume-PHP
+# Contributing to resumify-php
 
-Thank you for considering contributing to Resume-PHP! This document outlines the process for contributing to the project and how to report issues.
+Thank you for considering contributing to resumify-php! This document outlines the process for contributing to the project and how to report issues.
 
 ## Code of Conduct
 
@@ -89,4 +89,4 @@ If you're adding new features or making significant changes, please update the d
 
 If you have any questions about contributing, please open an issue and we'll be happy to help.
 
-Thank you for contributing to Resume-PHP!
+Thank you for contributing to resumify-php!

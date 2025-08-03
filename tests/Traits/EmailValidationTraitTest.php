@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Traits;
+namespace Muliacode\Resumify\Tests\Traits;
 
-use Muliacode\Resume\Exceptions\InvalidEmailException;
-use Muliacode\Resume\Traits\EmailValidationTrait;
+use Muliacode\Resumify\Exceptions\InvalidEmailException;
+use Muliacode\Resumify\Traits\EmailValidationTrait;
 
 it('validates a valid email successfully', function (): void {
     $trait = new class {

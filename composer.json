@@ -1,11 +1,11 @@
 {
-    "name": "muliacode/resume-php",
+    "name": "muliacode/resumify-php",
     "description": "A lightweight PHP package for creating and exporting resume profiles to standardized formats like JSON-Resume, Europass, and HR-XML",
     "keywords": [
         "muliacode",
-        "resume-php"
+        "resumify-php"
     ],
-    "homepage": "https://github.com/muliacode/resume-php",
+    "homepage": "https://github.com/muliacode/resumify-php",
     "license": "MIT",
     "authors": [
         {
@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Muliacode\\Resume\\": "src"
+            "Muliacode\\Resumify\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Muliacode\\Resume\\Tests\\": "tests"
+            "Muliacode\\Resumify\\Tests\\": "tests"
         }
     },
     "scripts": {

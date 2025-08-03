@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Models\Reference;
+use Muliacode\Resumify\Models\Reference;
 
 test('it creates a Reference with null values', function (): void {
     $reference = Reference::create();

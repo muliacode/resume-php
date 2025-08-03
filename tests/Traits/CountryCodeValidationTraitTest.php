@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Traits;
+namespace Muliacode\Resumify\Tests\Traits;
 
-use Muliacode\Resume\Exceptions\InvalidCountryCodeException;
-use Muliacode\Resume\Traits\CountryCodeValidationTrait;
+use Muliacode\Resumify\Exceptions\InvalidCountryCodeException;
+use Muliacode\Resumify\Traits\CountryCodeValidationTrait;
 
 it('passes validation for a valid country code', function (): void {
     $trait = new class {

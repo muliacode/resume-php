@@ -1,7 +1,7 @@
-# ResumePHP
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/muliacode/resume-php.svg?style=flat-square)](https://packagist.org/packages/muliacode/resume-php)
-[![Tests](https://img.shields.io/github/actions/workflow/status/muliacode/resume-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/muliacode/resume-php/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/muliacode/resume-php.svg?style=flat-square)](https://packagist.org/packages/muliacode/resume-php)
+# ResumifyPHP
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/muliacode/resumify-php.svg?style=flat-square)](https://packagist.org/packages/muliacode/resumify-php)
+[![Tests](https://img.shields.io/github/actions/workflow/status/muliacode/resumify-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/muliacode/resumify-php/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/muliacode/resumify-php.svg?style=flat-square)](https://packagist.org/packages/muliacode/resumify-php)
 
 A lightweight PHP package for creating and exporting resume profiles to standardized formats like json-resume.
 
@@ -9,18 +9,18 @@ A lightweight PHP package for creating and exporting resume profiles to standard
 You can install the package via composer:
 
 ```bash
-composer require muliacode/resume-php
+composer require muliacode/resumify
 ```
 
 ## Usage
 
 ```php
 // Create a new Resume instance
-$resume = Muliacode\Resume\Resume::create();
+$resume = Muliacode\Resumify\Resume::create();
 
 // Add basic information
 $resume->basics(
-    Muliacode\Resume\Models\Basics::create(
+    Muliacode\Resumify\Models\Basics::create(
         'John Doe',
         'Software Developer',
         'https://example.com/profile.jpg',
@@ -28,7 +28,7 @@ $resume->basics(
         '+1 (555) 123-4567',
         'https://johndoe.com',
         'Experienced software developer with a passion for clean code and problem-solving.',
-        Muliacode\Resume\Models\Location::create(
+        Muliacode\Resumify\Models\Location::create(
             'San Francisco',
             'CA',
             'USA',
@@ -37,12 +37,12 @@ $resume->basics(
             '123'
         ),
         [
-            Muliacode\Resume\Models\Profile::create(
+            Muliacode\Resumify\Models\Profile::create(
                 'GitHub',
                 'johndoe',
                 'https://github.com/johndoe'
             ),
-            Muliacode\Resume\Models\Profile::create(
+            Muliacode\Resumify\Models\Profile::create(
                 'LinkedIn',
                 'johndoe',
                 'https://linkedin.com/in/johndoe'
@@ -53,7 +53,7 @@ $resume->basics(
 
 // Add work experience
 $resume->addWork(
-    Muliacode\Resume\Models\Work::create(
+    Muliacode\Resumify\Models\Work::create(
         'Acme Inc.',
         'San Francisco, CA',
         'Technology company focused on innovative solutions',
@@ -72,7 +72,7 @@ $resume->addWork(
 
 // Add education
 $resume->addEducation(
-    Muliacode\Resume\Models\Education::create(
+    Muliacode\Resumify\Models\Education::create(
         'University of Technology',
         'San Francisco, CA',
         'Computer Science',
@@ -89,7 +89,7 @@ $resume->addEducation(
 
 // Add skills
 $resume->addSkills(
-    Muliacode\Resume\Models\Skill::create(
+    Muliacode\Resumify\Models\Skill::create(
         'Programming',
         'Advanced',
         [
@@ -100,7 +100,7 @@ $resume->addSkills(
 
 // Add languages
 $resume->addLanguages(
-    Muliacode\Resume\Models\Language::create(
+    Muliacode\Resumify\Models\Language::create(
         'English',
         'Native'
     )
@@ -117,7 +117,7 @@ echo $jsonResume;
 $resumeArray = $resume->summarize();
 ```
 
-For more detailed examples and advanced usage, please check the [documentation](https://github.com/muliacode/resume-php/wiki).
+For more detailed examples and advanced usage, please check the [documentation](https://github.com/muliacode/resumify-php/wiki).
 
 ## Testing
 

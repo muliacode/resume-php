@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Models\Work;
+use Muliacode\Resumify\Models\Work;
 
 test('it initializes with all properties set to null by default', function (): void {
     $work = new Work();

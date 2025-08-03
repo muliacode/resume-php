@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Models\Publication;
+use Muliacode\Resumify\Models\Publication;
 
 test('it creates a publication with all properties', function (): void {
     $publication = Publication::create(

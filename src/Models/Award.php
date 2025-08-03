@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Models;
+namespace Muliacode\Resumify\Models;
 
-use Muliacode\Resume\Traits\DateValidationTrait;
+use Muliacode\Resumify\Traits\DateValidationTrait;
 use JsonSerializable;
 
 final class Award implements JsonSerializable

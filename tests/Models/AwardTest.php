@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Tests\Models;
+namespace Muliacode\Resumify\Tests\Models;
 
-use Muliacode\Resume\Models\Award;
+use Muliacode\Resumify\Models\Award;
 
 test('create method initializes an Award instance with provided properties', function (): void {
     $title = 'Best Developer';

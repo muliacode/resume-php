@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Models;
+namespace Muliacode\Resumify\Models;
 
-use Muliacode\Resume\Traits\CountryCodeValidationTrait;
-use Muliacode\Resume\Traits\PostalCodeValidationTrait;
+use Muliacode\Resumify\Traits\CountryCodeValidationTrait;
+use Muliacode\Resumify\Traits\PostalCodeValidationTrait;
 use JsonSerializable;
 
 final class Location implements JsonSerializable

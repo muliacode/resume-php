@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Muliacode\Resume\Models;
+namespace Muliacode\Resumify\Models;
 
-use Muliacode\Resume\Traits\EmailValidationTrait;
-use Muliacode\Resume\Traits\PhoneNumberValidationTrait;
-use Muliacode\Resume\Traits\UrlValidationTrait;
+use Muliacode\Resumify\Traits\EmailValidationTrait;
+use Muliacode\Resumify\Traits\PhoneNumberValidationTrait;
+use Muliacode\Resumify\Traits\UrlValidationTrait;
 use JsonSerializable;
 
 final class Basics implements JsonSerializable
