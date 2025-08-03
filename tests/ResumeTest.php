@@ -6,6 +6,7 @@ use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
+use Muliacode\Resume\Models\Language;
 use Muliacode\Resume\Models\Publication;
 use Muliacode\Resume\Models\Skill;
 use Muliacode\Resume\Models\Volunteer;
@@ -489,4 +490,42 @@ it('can retrieve added skills', function (): void {
 
     expect($retrievedSkills)->toBeArray()
         ->and($retrievedSkills[0])->toBe($skill);
+});
+
+it('can add a single language', function (): void {
+    $language = new Language(language: 'English', fluency: 'Native');
+
+    $this->resume->addLanguages($language);
+
+    expect($this->resume->getLanguages())->toHaveCount(1)
+        ->and($this->resume->getLanguages()[0])->toBe($language);
+});
+
+it('can add multiple languages', function (): void {
+    $language1 = new Language(language: 'English', fluency: 'Native');
+    $language2 = new Language(language: 'Spanish', fluency: 'Fluent');
+
+    $this->resume->addLanguages($language1, $language2);
+
+    expect($this->resume->getLanguages())->toHaveCount(2)
+        ->and($this->resume->getLanguages())->toContain($language1, $language2);
+});
+
+it('returns itself after adding languages', function (): void {
+    $language = new Language(language: 'English', fluency: 'Native');
+
+    $result = $this->resume->addLanguages($language);
+
+    expect($result)->toBe($this->resume);
+});
+
+it('can retrieve added languages', function (): void {
+    $language = new Language(language: 'English', fluency: 'Native');
+
+    $this->resume->addLanguages($language);
+
+    $retrievedLanguages = $this->resume->getLanguages();
+
+    expect($retrievedLanguages)->toBeArray()
+        ->and($retrievedLanguages[0])->toBe($language);
 });

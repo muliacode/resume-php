@@ -8,6 +8,7 @@ use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
+use Muliacode\Resume\Models\Language;
 use Muliacode\Resume\Models\Publication;
 use Muliacode\Resume\Models\Skill;
 use Muliacode\Resume\Models\Volunteer;
@@ -59,6 +60,11 @@ final class Resume
      * @var Skill[]
      */
     private array $skills = [];
+
+    /**
+     * @var Language[]
+     */
+    private array $languages = [];
 
     public function __construct()
     {
@@ -202,6 +208,23 @@ final class Resume
     public function getSkills(): array
     {
         return $this->skills;
+    }
+
+    public function addLanguages(Language ...$languages): self
+    {
+        foreach ($languages as $item) {
+            $this->languages[] = $item;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Language[]
+     */
+    public function getLanguages(): array
+    {
+        return $this->languages;
     }
 
     /**
