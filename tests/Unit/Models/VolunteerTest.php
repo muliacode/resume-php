@@ -74,7 +74,7 @@ test('it creates a volunteer with default values through create method', functio
         ->and($volunteer->getStartDate())->toBeNull()
         ->and($volunteer->getEndDate())->toBeNull()
         ->and($volunteer->getSummary())->toBeNull()
-        ->and($volunteer->getHighlights())->toBeNull();
+        ->and($volunteer->getHighlights())->toBeEmpty();
 });
 
 test('it constructs a volunteer with default values', function (): void {
@@ -86,5 +86,5 @@ test('it constructs a volunteer with default values', function (): void {
         ->and($volunteer->getStartDate())->toBeNull()
         ->and($volunteer->getEndDate())->toBeNull()
         ->and($volunteer->getSummary())->toBeNull()
-        ->and($volunteer->getHighlights())->toBeNull();
+        ->and($volunteer->getHighlights())->toBeEmpty();
 });

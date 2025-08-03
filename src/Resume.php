@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Muliacode\Resume;
 
 use Muliacode\Resume\Models\Basics;
+use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
 
@@ -29,6 +30,11 @@ final class Resume
      * @var Volunteer[]
      */
     private array $volunteer = [];
+
+    /**
+     * @var Education[]
+     */
+    private array $education = [];
 
     public function __construct()
     {
@@ -87,6 +93,23 @@ final class Resume
     public function getVolunteer(): array
     {
         return $this->volunteer;
+    }
+
+    public function addEducation(Education ...$education): self
+    {
+        foreach ($education as $item) {
+            $this->education[] = $item;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Education[]
+     */
+    public function getEducation(): array
+    {
+        return $this->education;
     }
 
     /**

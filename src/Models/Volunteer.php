@@ -19,6 +19,10 @@ final class Volunteer
         private ?array $highlights = null,
     ) {
         // TODO: Validate dates and URLs.
+
+        if ($this->highlights === null) {
+            $this->highlights = [];
+        }
     }
 
     /**

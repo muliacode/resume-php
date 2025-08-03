@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Muliacode\Resume\Models\Basics;
+use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
 use Muliacode\Resume\Resume;
@@ -114,6 +115,70 @@ it('returns itself from done method', function (): void {
     expect($result)->toBe($this->resume);
 });
 
+it('can add a single education entry', function (): void {
+    $education = Education::create(
+        institution: 'University A',
+        url: 'https://universitya.com',
+        area: 'Computer Science',
+        studyType: 'Bachelor',
+        startDate: '2015-01-01',
+        endDate: '2019-01-01',
+        score: '4.0',
+        courses: ['Algorithms', 'Data Structures']
+    );
+
+    $this->resume->addEducation($education);
+
+    expect($this->resume->getEducation())->toHaveCount(1)
+        ->and($this->resume->getEducation()[0])->toBe($education);
+});
+
+it('can add multiple education entries', function (): void {
+    $education1 = Education::create(
+        institution: 'University A',
+        url: 'https://universitya.com',
+        area: 'Computer Science',
+        studyType: 'Bachelor',
+        startDate: '2015-01-01',
+        endDate: '2019-01-01',
+        score: '4.0',
+        courses: ['Algorithms', 'Data Structures']
+    );
+
+    $education2 = Education::create(
+        institution: 'University B',
+        url: 'https://universityb.com',
+        area: 'Software Engineering',
+        studyType: 'Master',
+        startDate: '2020-01-01',
+        endDate: '2022-01-01',
+        score: '4.0',
+        courses: ['Machine Learning', 'Distributed Systems']
+    );
+
+    $this->resume->addEducation($education1, $education2);
+
+    expect($this->resume->getEducation())->toHaveCount(2)
+        ->and($this->resume->getEducation())->toContain($education1, $education2);
+});
+
+it('returns itself after adding education entries', function (): void {
+    $education = Education::create(
+        institution: 'University A',
+        url: 'https://universitya.com',
+        area: 'Computer Science',
+        studyType: 'Bachelor',
+        startDate: '2015-01-01',
+        endDate: '2019-01-01',
+        score: '4.0',
+        courses: ['Algorithms', 'Data Structures']
+    );
+
+    $result = $this->resume->addEducation($education);
+
+    expect($result)->toBe($this->resume);
+});
+
 it('can add a single work experience', function (): void {
     $work = new Work(
         name: 'Company A',
@@ -192,7 +257,7 @@ it('can convert to array', function (): void {
 
 it('can convert to JSON string', function (): void {
     $json = $this->resume->toJson();
-    $array = json_decode((string) $json, true);
+    $array = json_decode((string)$json, true);
 
     expect($json)->toBeString()
         ->and($array)->toBeArray()

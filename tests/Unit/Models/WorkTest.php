@@ -17,7 +17,7 @@ test('it initializes with all properties set to null by default', function (): v
         ->and($work->getStartDate())->toBeNull()
         ->and($work->getEndDate())->toBeNull()
         ->and($work->getSummary())->toBeNull()
-        ->and($work->getHighlights())->toBeNull();
+        ->and($work->getHighlights())->toBeEmpty();
 });
 
 test('it creates an instance with given values using the create method', function (): void {
@@ -78,7 +78,7 @@ test('it creates an instance with all default null values using the create metho
         ->and($work->getStartDate())->toBeNull()
         ->and($work->getEndDate())->toBeNull()
         ->and($work->getSummary())->toBeNull()
-        ->and($work->getHighlights())->toBeNull();
+        ->and($work->getHighlights())->toBeEmpty();
 });
 
 test('it initializes with provided values', function (): void {
