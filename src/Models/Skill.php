@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
+use Muliacode\Resume\Enums\SkillLevel;
+
 final class Skill
 {
     public function __construct(
         private ?string $name = null,
-        private ?string $level = null,
+        private ?SkillLevel $level = null,
         /**
          * @var string[]|null
          */
@@ -24,7 +26,7 @@ final class Skill
      */
     public static function create(
         ?string $name = null,
-        ?string $level = null,
+        ?SkillLevel $level = null,
         ?array $keywords = []
     ): self {
         return new self($name, $level, $keywords);
@@ -41,12 +43,12 @@ final class Skill
         return $this;
     }
 
-    public function getLevel(): ?string
+    public function getLevel(): ?SkillLevel
     {
         return $this->level;
     }
 
-    public function setLevel(?string $level): self
+    public function setLevel(?SkillLevel $level): self
     {
         $this->level = $level;
         return $this;

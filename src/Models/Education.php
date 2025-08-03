@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
+use Muliacode\Resume\Enums\EducationType;
 use Muliacode\Resume\Traits\DateValidationTrait;
 use Muliacode\Resume\Traits\UrlValidationTrait;
 
@@ -16,7 +17,7 @@ final class Education
         private ?string $institution = null,
         private ?string $url = null,
         private ?string $area = null,
-        private ?string $studyType = null,
+        private ?EducationType $studyType = null,
         private ?string $startDate = null,
         private ?string $endDate = null,
         private ?string $score = null,
@@ -37,7 +38,7 @@ final class Education
         ?string $institution = null,
         ?string $url = null,
         ?string $area = null,
-        ?string $studyType = null,
+        ?EducationType $studyType = null,
         ?string $startDate = null,
         ?string $endDate = null,
         ?string $score = null,
@@ -88,12 +89,12 @@ final class Education
         return $this;
     }
 
-    public function getStudyType(): ?string
+    public function getStudyType(): ?EducationType
     {
         return $this->studyType;
     }
 
-    public function setStudyType(?string $studyType): self
+    public function setStudyType(?EducationType $studyType): self
     {
         $this->studyType = $studyType;
         return $this;

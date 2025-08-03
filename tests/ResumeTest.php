@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use Muliacode\Resume\Enums\EducationType;
 use Muliacode\Resume\Enums\Network;
+use Muliacode\Resume\Enums\SkillLevel;
 use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Certificate;
@@ -179,7 +181,7 @@ it('can add a single education entry', function (): void {
         institution: 'University A',
         url: 'https://universitya.com',
         area: 'Computer Science',
-        studyType: 'Bachelor',
+        studyType: EducationType::Bachelor,
         startDate: '2015-01-01',
         endDate: '2019-01-01',
         score: '4.0',
@@ -197,7 +199,7 @@ it('can add multiple education entries', function (): void {
         institution: 'University A',
         url: 'https://universitya.com',
         area: 'Computer Science',
-        studyType: 'Bachelor',
+        studyType: EducationType::Bachelor,
         startDate: '2015-01-01',
         endDate: '2019-01-01',
         score: '4.0',
@@ -208,7 +210,7 @@ it('can add multiple education entries', function (): void {
         institution: 'University B',
         url: 'https://universityb.com',
         area: 'Software Engineering',
-        studyType: 'Master',
+        studyType: EducationType::Master,
         startDate: '2020-01-01',
         endDate: '2022-01-01',
         score: '4.0',
@@ -226,7 +228,7 @@ it('returns itself after adding education entries', function (): void {
         institution: 'University A',
         url: 'https://universitya.com',
         area: 'Computer Science',
-        studyType: 'Bachelor',
+        studyType: EducationType::Bachelor,
         startDate: '2015-01-01',
         endDate: '2019-01-01',
         score: '4.0',
@@ -425,7 +427,7 @@ it('can retrieve added awards', function (): void {
 it('can add a single skill', function (): void {
     $skill = new Skill(
         name: 'PHP',
-        level: 'Expert',
+        level: SkillLevel::Expert,
         keywords: ['OOP', 'Laravel', 'Testing']
     );
 
@@ -438,13 +440,13 @@ it('can add a single skill', function (): void {
 it('can add multiple skills', function (): void {
     $skill1 = new Skill(
         name: 'PHP',
-        level: 'Expert',
+        level: SkillLevel::Expert,
         keywords: ['OOP', 'Laravel', 'Testing']
     );
 
     $skill2 = new Skill(
         name: 'JavaScript',
-        level: 'Intermediate',
+        level: SkillLevel::Intermediate,
         keywords: ['React', 'Vue', 'Node']
     );
 
@@ -457,7 +459,7 @@ it('can add multiple skills', function (): void {
 it('returns itself after adding skills', function (): void {
     $skill = new Skill(
         name: 'PHP',
-        level: 'Expert',
+        level: SkillLevel::Expert,
         keywords: ['OOP', 'Laravel', 'Testing']
     );
 
@@ -469,7 +471,7 @@ it('returns itself after adding skills', function (): void {
 it('can retrieve added skills', function (): void {
     $skill = new Skill(
         name: 'PHP',
-        level: 'Expert',
+        level: SkillLevel::Expert,
         keywords: ['OOP', 'Laravel', 'Testing']
     );
 
@@ -752,7 +754,7 @@ it('can create a complete valid resume', function (): void {
         institution: 'Tech University',
         url: 'https://techuniversity.edu',
         area: 'Computer Science',
-        studyType: 'Bachelor',
+        studyType: EducationType::Bachelor,
         startDate: '2010-09-01',
         endDate: '2014-05-31',
         score: '3.8',
@@ -783,7 +785,7 @@ it('can create a complete valid resume', function (): void {
 
     $resume->addSkills(Skill::create(
         name: 'PHP',
-        level: 'Expert',
+        level: SkillLevel::Beginner,
         keywords: ['Laravel', 'Symfony', 'Testing']
     ));
 

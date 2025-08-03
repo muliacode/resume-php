@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Tests\Models;
 
+use Muliacode\Resume\Enums\EducationType;
 use Muliacode\Resume\Models\Education;
 
 test('it can create an Education instance with all properties', function (): void {
@@ -11,7 +12,7 @@ test('it can create an Education instance with all properties', function (): voi
         'Test University',
         'https://test-university.edu',
         'Computer Science',
-        'Bachelor',
+        EducationType::Bachelor,
         '2020-01-01',
         '2024-01-01',
         '4.0',
@@ -21,7 +22,7 @@ test('it can create an Education instance with all properties', function (): voi
     expect($education->getInstitution())->toBe('Test University')
         ->and($education->getUrl())->toBe('https://test-university.edu')
         ->and($education->getArea())->toBe('Computer Science')
-        ->and($education->getStudyType())->toBe('Bachelor')
+        ->and($education->getStudyType())->toBe(EducationType::Bachelor)
         ->and($education->getStartDate())->toBe('2020-01-01')
         ->and($education->getEndDate())->toBe('2024-01-01')
         ->and($education->getScore())->toBe('4.0')
@@ -33,7 +34,7 @@ test('it can create an Education instance with all properties using setters', fu
         ->setInstitution('Test University')
         ->setUrl('https://test-university.edu')
         ->setArea('Computer Science')
-        ->setStudyType('Bachelor')
+        ->setStudyType(EducationType::Bachelor)
         ->setStartDate('2020-01-01')
         ->setEndDate('2024-01-01')
         ->setScore('4.0')
@@ -42,7 +43,7 @@ test('it can create an Education instance with all properties using setters', fu
     expect($education->getInstitution())->toBe('Test University')
         ->and($education->getUrl())->toBe('https://test-university.edu')
         ->and($education->getArea())->toBe('Computer Science')
-        ->and($education->getStudyType())->toBe('Bachelor')
+        ->and($education->getStudyType())->toBe(EducationType::Bachelor)
         ->and($education->getStartDate())->toBe('2020-01-01')
         ->and($education->getEndDate())->toBe('2024-01-01')
         ->and($education->getScore())->toBe('4.0')
