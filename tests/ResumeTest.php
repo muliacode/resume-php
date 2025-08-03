@@ -8,6 +8,7 @@ use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Interest;
 use Muliacode\Resume\Models\Language;
+use Muliacode\Resume\Models\Project;
 use Muliacode\Resume\Models\Publication;
 use Muliacode\Resume\Models\Reference;
 use Muliacode\Resume\Models\Skill;
@@ -620,4 +621,98 @@ it('can retrieve added references', function (): void {
 
     expect($retrievedReferences)->toBeArray()
         ->and($retrievedReferences[0])->toBe($reference);
+});
+
+it('can add a single project', function (): void {
+    $project = new Project(
+        name: 'Web Platform',
+        description: 'Developed a web application for e-commerce.',
+        highlights: ['Responsive design', 'Payment gateway integration'],
+        keywords: ['e-commerce', 'PHP', 'Laravel'],
+        startDate: '2022-01-01',
+        endDate: '2023-01-01',
+        url: 'https://example.com/project',
+        roles: ['Developer', 'Technical Lead'],
+        entity: 'Organization A',
+        type: 'Professional'
+    );
+
+    $this->resume->addProjects($project);
+
+    expect($this->resume->getProjects())->toHaveCount(1)
+        ->and($this->resume->getProjects()[0])->toBe($project);
+});
+
+it('can add multiple projects', function (): void {
+    $project1 = new Project(
+        name: 'Web Platform',
+        description: 'Developed a web application for e-commerce.',
+        highlights: ['Responsive design', 'Payment gateway integration'],
+        keywords: ['e-commerce', 'PHP', 'Laravel'],
+        startDate: '2022-01-01',
+        endDate: '2023-01-01',
+        url: 'https://example.com/project1',
+        roles: ['Developer', 'Technical Lead'],
+        entity: 'Organization A',
+        type: 'Professional'
+    );
+
+    $project2 = new Project(
+        name: 'Mobile App',
+        description: 'Built a mobile app for fitness tracking.',
+        highlights: ['Step counting', 'Calorie tracking'],
+        keywords: ['fitness', 'Java', 'Android'],
+        startDate: '2023-02-01',
+        endDate: '2024-02-01',
+        url: 'https://example.com/project2',
+        roles: ['Developer'],
+        entity: 'Organization B',
+        type: 'Personal'
+    );
+
+    $this->resume->addProjects($project1, $project2);
+
+    expect($this->resume->getProjects())->toHaveCount(2)
+        ->and($this->resume->getProjects())->toContain($project1, $project2);
+});
+
+it('returns itself after adding projects', function (): void {
+    $project = new Project(
+        name: 'Web Platform',
+        description: 'Developed a web application for e-commerce.',
+        highlights: ['Responsive design', 'Payment gateway integration'],
+        keywords: ['e-commerce', 'PHP', 'Laravel'],
+        startDate: '2022-01-01',
+        endDate: '2023-01-01',
+        url: 'https://example.com/project',
+        roles: ['Developer', 'Technical Lead'],
+        entity: 'Organization A',
+        type: 'Professional'
+    );
+
+    $result = $this->resume->addProjects($project);
+
+    expect($result)->toBe($this->resume);
+});
+
+it('can retrieve added projects', function (): void {
+    $project = new Project(
+        name: 'Web Platform',
+        description: 'Developed a web application for e-commerce.',
+        highlights: ['Responsive design', 'Payment gateway integration'],
+        keywords: ['e-commerce', 'PHP', 'Laravel'],
+        startDate: '2022-01-01',
+        endDate: '2023-01-01',
+        url: 'https://example.com/project',
+        roles: ['Developer', 'Technical Lead'],
+        entity: 'Organization A',
+        type: 'Professional'
+    );
+
+    $this->resume->addProjects($project);
+
+    $retrievedProjects = $this->resume->getProjects();
+
+    expect($retrievedProjects)->toBeArray()
+        ->and($retrievedProjects[0])->toBe($project);
 });

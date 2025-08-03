@@ -10,6 +10,7 @@ use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Interest;
 use Muliacode\Resume\Models\Language;
+use Muliacode\Resume\Models\Project;
 use Muliacode\Resume\Models\Publication;
 use Muliacode\Resume\Models\Reference;
 use Muliacode\Resume\Models\Skill;
@@ -77,6 +78,11 @@ final class Resume
      * @var Reference[]
      */
     private array $references = [];
+
+    /**
+     * @var Project[]
+     */
+    private array $projects = [];
 
     public function __construct()
     {
@@ -271,6 +277,23 @@ final class Resume
     public function getReferences(): array
     {
         return $this->references;
+    }
+
+    public function addProjects(Project ...$projects): self
+    {
+        foreach ($projects as $item) {
+            $this->projects[] = $item;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Project[]
+     */
+    public function getProjects(): array
+    {
+        return $this->projects;
     }
 
     /**
