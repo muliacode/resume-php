@@ -2,11 +2,17 @@
 
 declare(strict_types=1);
 
+use Muliacode\Resume\Enums\Network;
 use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Location;
+use Muliacode\Resume\Models\Profile;
 
 it('can be instantiated with constructor parameter and all data', function (): void {
     $location = Location::create();
+    $profiles = [
+        Profile::create(Network::Github, 'johndoe'),
+        Profile::create(Network::LinkedIn, 'johndoe'),
+    ];
     $personalInfo = new Basics(
         name: 'John Doe',
         label: 'Software Engineer',
@@ -15,7 +21,8 @@ it('can be instantiated with constructor parameter and all data', function (): v
         phone: '123-456-7890',
         url: 'https://john.doe',
         summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        location: $location
+        location: $location,
+        profiles: $profiles
     );
 
     expect($personalInfo->getName())->toBe('John Doe')
@@ -25,10 +32,15 @@ it('can be instantiated with constructor parameter and all data', function (): v
         ->and($personalInfo->getImage())->toBe('john.jpg')
         ->and($personalInfo->getUrl())->toBe('https://john.doe')
         ->and($personalInfo->getSummary())->toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
-        ->and($personalInfo->getLocation())->toBe($location);
+        ->and($personalInfo->getLocation())->toBe($location)
+        ->and($personalInfo->getProfiles())->toBe($profiles);
 });
 
 it('can be instantiated with setts and all data', function (): void {
+    $profiles = [
+        Profile::create(Network::Github, 'johndoe'),
+        Profile::create(Network::LinkedIn, 'johndoe'),
+    ];
     $personalInfo = Basics::create()
         ->setName('John Doe')
         ->setLabel('Software Engineer')
@@ -37,7 +49,8 @@ it('can be instantiated with setts and all data', function (): void {
         ->setPhone('123-456-7890')
         ->setUrl('https://john.doe')
         ->setSummary('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
-        ->setLocation(Location::create());
+        ->setLocation(Location::create())
+        ->setProfiles($profiles);
 
 
     expect($personalInfo->getName())->toBe('John Doe')
@@ -47,7 +60,8 @@ it('can be instantiated with setts and all data', function (): void {
         ->and($personalInfo->getImage())->toBe('john.jpg')
         ->and($personalInfo->getUrl())->toBe('https://john.doe')
         ->and($personalInfo->getSummary())->toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
-        ->and($personalInfo->getLocation())->toBeInstanceOf(Location::class);
+        ->and($personalInfo->getLocation())->toBeInstanceOf(Location::class)
+        ->and($personalInfo->getProfiles())->toBe($profiles);
 });
 
 it('can be instantiated with constructor parameters', function (): void {

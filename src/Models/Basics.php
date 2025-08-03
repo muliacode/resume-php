@@ -17,6 +17,7 @@ final class Basics
      * @param string|null $url The website URL.
      * @param string|null $summary A summary or description.
      * @param Location|null $location The location.
+     * @param Profile[]|null $profiles The profiles.
      *
      * @return void
      */
@@ -29,6 +30,7 @@ final class Basics
         private ?string $url = null,
         private ?string $summary = null,
         private ?Location $location = null,
+        private ?array $profiles = [],
     ) {
         // TODO: Add Validation such as email and phonenumber.
     }
@@ -44,6 +46,7 @@ final class Basics
      * @param string|null $url A URL associated with the instance.
      * @param string|null $summary A summary or description of the instance.
      * @param Location|null $location A location of the instance
+     * @param Profile[]|null $profiles A list of profiles of the instance.
      *
      * @return self Returns a new instance of the class.
      */
@@ -56,8 +59,9 @@ final class Basics
         ?string $url = null,
         ?string $summary = null,
         ?Location $location = null,
+        ?array $profiles = [],
     ): self {
-        return new self($name, $label, $image, $email, $phone, $url, $summary, $location);
+        return new self($name, $label, $image, $email, $phone, $url, $summary, $location, $profiles);
     }
 
     /**
@@ -155,6 +159,24 @@ final class Basics
     public function setLocation(?Location $location): self
     {
         $this->location = $location;
+        return $this;
+    }
+
+    /**
+     * @return Profile[]|null
+     */
+    public function getProfiles(): ?array
+    {
+        return $this->profiles;
+    }
+
+    /**
+     * @param Profile[]|null $profiles
+     * @return $this
+     */
+    public function setProfiles(?array $profiles): self
+    {
+        $this->profiles = $profiles;
         return $this;
     }
 }
