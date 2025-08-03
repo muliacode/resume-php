@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Tests\Models;
 
+use Muliacode\Resume\Enums\LanguageFluencyLevel;
 use Muliacode\Resume\Models\Language;
 
 test('it creates a Language instance with null values', function (): void {
@@ -16,21 +17,21 @@ test('it creates a Language instance with null values', function (): void {
 });
 
 test('it creates a Language instance with language and fluency values', function (): void {
-    $language = Language::create('English', 'Native');
+    $language = Language::create('English', LanguageFluencyLevel::NATIVE);
 
     expect($language)
         ->toBeInstanceOf(Language::class)
         ->getLanguage()->toBe('English')
-        ->getFluency()->toBe('Native');
+        ->getFluency()->toBe(LanguageFluencyLevel::NATIVE);
 });
 
 test('it creates a Language instance with language and fluency values using setters', function (): void {
     $language = Language::create()
         ->setLanguage('English')
-        ->setFluency('Native');
+        ->setFluency(LanguageFluencyLevel::C2);
 
     expect($language)
         ->toBeInstanceOf(Language::class)
         ->getLanguage()->toBe('English')
-        ->getFluency()->toBe('Native');
+        ->getFluency()->toBe(LanguageFluencyLevel::C2);
 });

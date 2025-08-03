@@ -20,7 +20,7 @@ final class Education
         private ?EducationType $studyType = null,
         private ?string $startDate = null,
         private ?string $endDate = null,
-        private ?string $score = null,
+        private ?float $score = null,
         /**
          * @var string[]|null
          */
@@ -41,7 +41,7 @@ final class Education
         ?EducationType $studyType = null,
         ?string $startDate = null,
         ?string $endDate = null,
-        ?string $score = null,
+        ?float $score = null,
         ?array $courses = null
     ): self {
         return new self($institution, $url, $area, $studyType, $startDate, $endDate, $score, $courses);
@@ -122,12 +122,16 @@ final class Education
         return $this;
     }
 
-    public function getScore(): ?string
+    public function getScore(int $precision = 2): ?float
     {
-        return $this->score;
+        if ($this->score === null) {
+            return null;
+        }
+
+        return round($this->score, $precision);
     }
 
-    public function setScore(?string $score): self
+    public function setScore(?float $score): self
     {
         $this->score = $score;
         return $this;

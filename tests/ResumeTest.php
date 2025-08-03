@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Muliacode\Resume\Enums\EducationType;
+use Muliacode\Resume\Enums\LanguageFluencyLevel;
 use Muliacode\Resume\Enums\Network;
 use Muliacode\Resume\Enums\SkillLevel;
 use Muliacode\Resume\Models\Award;
@@ -184,7 +185,7 @@ it('can add a single education entry', function (): void {
         studyType: EducationType::Bachelor,
         startDate: '2015-01-01',
         endDate: '2019-01-01',
-        score: '4.0',
+        score: 4.0,
         courses: ['Algorithms', 'Data Structures']
     );
 
@@ -202,7 +203,7 @@ it('can add multiple education entries', function (): void {
         studyType: EducationType::Bachelor,
         startDate: '2015-01-01',
         endDate: '2019-01-01',
-        score: '4.0',
+        score: 4.0,
         courses: ['Algorithms', 'Data Structures']
     );
 
@@ -213,7 +214,7 @@ it('can add multiple education entries', function (): void {
         studyType: EducationType::Master,
         startDate: '2020-01-01',
         endDate: '2022-01-01',
-        score: '4.0',
+        score: 4.0,
         courses: ['Machine Learning', 'Distributed Systems']
     );
 
@@ -231,7 +232,7 @@ it('returns itself after adding education entries', function (): void {
         studyType: EducationType::Bachelor,
         startDate: '2015-01-01',
         endDate: '2019-01-01',
-        score: '4.0',
+        score: 4.0,
         courses: ['Algorithms', 'Data Structures']
     );
 
@@ -484,7 +485,7 @@ it('can retrieve added skills', function (): void {
 });
 
 it('can add a single language', function (): void {
-    $language = new Language(language: 'English', fluency: 'Native');
+    $language = new Language(language: 'English', fluency: LanguageFluencyLevel::NATIVE);
 
     $this->resume->addLanguages($language);
 
@@ -493,8 +494,8 @@ it('can add a single language', function (): void {
 });
 
 it('can add multiple languages', function (): void {
-    $language1 = new Language(language: 'English', fluency: 'Native');
-    $language2 = new Language(language: 'Spanish', fluency: 'Fluent');
+    $language1 = new Language(language: 'English', fluency:  LanguageFluencyLevel::NATIVE);
+    $language2 = new Language(language: 'Spanish', fluency:  LanguageFluencyLevel::B1);
 
     $this->resume->addLanguages($language1, $language2);
 
@@ -555,7 +556,7 @@ it('can retrieve added interests', function (): void {
         ->and($retrievedInterests[0])->toBe($interest);
 });
 it('returns itself after adding languages', function (): void {
-    $language = new Language(language: 'English', fluency: 'Native');
+    $language = new Language(language: 'English', fluency:  LanguageFluencyLevel::NATIVE);
 
     $result = $this->resume->addLanguages($language);
 
@@ -563,7 +564,7 @@ it('returns itself after adding languages', function (): void {
 });
 
 it('can retrieve added languages', function (): void {
-    $language = new Language(language: 'English', fluency: 'Native');
+    $language = new Language(language: 'English', fluency:  LanguageFluencyLevel::NATIVE);
 
     $this->resume->addLanguages($language);
 
@@ -757,7 +758,7 @@ it('can create a complete valid resume', function (): void {
         studyType: EducationType::Bachelor,
         startDate: '2010-09-01',
         endDate: '2014-05-31',
-        score: '3.8',
+        score: 3.8,
         courses: ['Data Structures', 'Algorithms']
     ));
 
@@ -791,7 +792,7 @@ it('can create a complete valid resume', function (): void {
 
     $resume->addLanguages(Language::create(
         language: 'English',
-        fluency: 'Native'
+        fluency:  LanguageFluencyLevel::NATIVE
     ));
 
     $resume->addInterests(Interest::create(

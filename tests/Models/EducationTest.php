@@ -15,7 +15,7 @@ test('it can create an Education instance with all properties', function (): voi
         EducationType::Bachelor,
         '2020-01-01',
         '2024-01-01',
-        '4.0',
+        4.1,
         ['CS101', 'CS102']
     )->validate();
 
@@ -25,7 +25,7 @@ test('it can create an Education instance with all properties', function (): voi
         ->and($education->getStudyType())->toBe(EducationType::Bachelor)
         ->and($education->getStartDate())->toBe('2020-01-01')
         ->and($education->getEndDate())->toBe('2024-01-01')
-        ->and($education->getScore())->toBe('4.0')
+        ->and($education->getScore())->toBe(4.1)
         ->and($education->getCourses())->toBe(['CS101', 'CS102']);
 });
 
@@ -37,7 +37,7 @@ test('it can create an Education instance with all properties using setters', fu
         ->setStudyType(EducationType::Bachelor)
         ->setStartDate('2020-01-01')
         ->setEndDate('2024-01-01')
-        ->setScore('4.0')
+        ->setScore(4.0)
         ->setCourses(['CS101', 'CS102']);
 
     expect($education->getInstitution())->toBe('Test University')
@@ -46,7 +46,7 @@ test('it can create an Education instance with all properties using setters', fu
         ->and($education->getStudyType())->toBe(EducationType::Bachelor)
         ->and($education->getStartDate())->toBe('2020-01-01')
         ->and($education->getEndDate())->toBe('2024-01-01')
-        ->and($education->getScore())->toBe('4.0')
+        ->and($education->getScore())->toBe(4.0)
         ->and($education->getCourses())->toBe(['CS101', 'CS102']);
 });
 

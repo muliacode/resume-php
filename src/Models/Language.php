@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
+use Muliacode\Resume\Enums\LanguageFluencyLevel;
+
 final class Language
 {
     public function __construct(
         private ?string $language = null,
-        private ?string $fluency = null,
+        private ?LanguageFluencyLevel $fluency = null,
     ) {
     }
 
-    public static function create(?string $language = null, ?string $fluency = null): self
+    public static function create(?string $language = null, ?LanguageFluencyLevel $fluency = null): self
     {
         return new self($language, $fluency);
     }
@@ -28,12 +30,12 @@ final class Language
         return $this;
     }
 
-    public function getFluency(): ?string
+    public function getFluency(): ?LanguageFluencyLevel
     {
         return $this->fluency;
     }
 
-    public function setFluency(?string $fluency): self
+    public function setFluency(?LanguageFluencyLevel $fluency): self
     {
         $this->fluency = $fluency;
         return $this;
