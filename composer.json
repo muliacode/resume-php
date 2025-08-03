@@ -52,7 +52,7 @@
             "@test:type-coverage",
             "@test:unit"
         ],
-        "clean": [
+        "format": [
             "@lint",
             "@refactor"
         ]
