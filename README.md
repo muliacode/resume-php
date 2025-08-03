@@ -1,12 +1,11 @@
-# A lightweight PHP package for creating and exporting resume profiles to standardized formats like JSON-Resume, Europass, and HR-XML
-
+# ResumePHP
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/muliacode/resume-php.svg?style=flat-square)](https://packagist.org/packages/muliacode/resume-php)
 [![Tests](https://img.shields.io/github/actions/workflow/status/muliacode/resume-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/muliacode/resume-php/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/muliacode/resume-php.svg?style=flat-square)](https://packagist.org/packages/muliacode/resume-php)
 
+A lightweight PHP package for creating and exporting resume profiles to standardized formats like json-resume.
 
 ## Installation
-
 You can install the package via composer:
 
 ```bash
