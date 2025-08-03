@@ -31,16 +31,6 @@ final class Location
         return new self($address, $postalCode, $city, $countryCode, $region);
     }
 
-    /**
-     * Converts the properties of the current object to an associative array.
-     *
-     * @return array<string, mixed> An associative array containing the object's properties as keys and their values.
-     */
-    public function toArray(): array
-    {
-        return get_object_vars($this);
-    }
-
     public function getAddress(): ?string
     {
         return $this->address;

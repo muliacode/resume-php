@@ -10,7 +10,7 @@ use Respect\Validation\Validator;
 
 trait PostalCodeValidationTrait
 {
-    protected function validatePostalCode(?string $postalCode, string $countryCode): void
+    protected function validatePostalCode(?string $postalCode, ?string $countryCode): void
     {
         if ($postalCode === null) {
             return;

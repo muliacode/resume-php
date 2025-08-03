@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
+use Muliacode\Resume\Enums\Network;
 use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
 use Muliacode\Resume\Models\Interest;
 use Muliacode\Resume\Models\Language;
+use Muliacode\Resume\Models\Location;
+use Muliacode\Resume\Models\Profile;
 use Muliacode\Resume\Models\Project;
 use Muliacode\Resume\Models\Publication;
 use Muliacode\Resume\Models\Reference;
@@ -301,23 +304,6 @@ it('returns itself after adding work experience', function (): void {
     $result = $this->resume->addWork($work);
 
     expect($result)->toBe($this->resume);
-});
-
-it('can convert to array', function (): void {
-    $array = $this->resume->toArray();
-
-    expect($array)->toBeArray()
-        ->and($array)->toHaveKey('basics')
-        ->and($array['basics'])->toBeArray();
-});
-
-it('can convert to JSON string', function (): void {
-    $json = $this->resume->toJson();
-    $array = json_decode((string)$json, true);
-
-    expect($json)->toBeString()
-        ->and($array)->toBeArray()
-        ->and($array)->toHaveKey('basics');
 });
 
 it('can add a single publication', function (): void {
@@ -716,3 +702,118 @@ it('can retrieve added projects', function (): void {
     expect($retrievedProjects)->toBeArray()
         ->and($retrievedProjects[0])->toBe($project);
 });
+
+it('can create a complete valid resume', function (): void {
+    $resume = Resume::create();
+
+    $resume->basics(Basics::create(
+        name: 'John Doe',
+        label: 'Software Developer',
+        image: 'https://example.com/photo.jpg',
+        email: 'john@example.com',
+        phone: '(555) 555-5555',
+        url: 'https://johndoe.com',
+        summary: 'Experienced software developer with 10+ years in the industry',
+        location: Location::create(
+            address: "Stationsstraat 7",
+            postalCode: '1000AA',
+            city: 'Amsterdam',
+            countryCode: 'NL',
+            region: 'Noord-Holland'
+        ),
+        profiles: [
+            Profile::create(Network::Github, 'johndoe', 'https://github.com/johndoe'),
+        ]
+    ));
+
+    $resume->addWork(new Work(
+        name: 'Tech Corp',
+        location: 'New York',
+        description: 'Enterprise software development',
+        position: 'Senior Developer',
+        url: 'https://techcorp.com',
+        startDate: '2020-01-01',
+        endDate: '2023-12-31',
+        summary: 'Led development team',
+        highlights: ['Increased performance by 50%']
+    ));
+
+    $resume->addVolunteer(new Volunteer(
+        organization: 'Code for Good',
+        position: 'Mentor',
+        url: 'https://codeforgood.org',
+        startDate: '2022-01-01',
+        endDate: '2023-12-31',
+        summary: 'Mentored junior developers',
+        highlights: ['Helped 20+ developers']
+    ));
+
+    $resume->addEducation(Education::create(
+        institution: 'Tech University',
+        url: 'https://techuniversity.edu',
+        area: 'Computer Science',
+        studyType: 'Bachelor',
+        startDate: '2010-09-01',
+        endDate: '2014-05-31',
+        score: '3.8',
+        courses: ['Data Structures', 'Algorithms']
+    ));
+
+    $resume->addAwards(Award::create(
+        title: 'Developer of the Year',
+        date: '2023-12-01',
+        awarder: 'Tech Association',
+        summary: 'Recognition for outstanding contributions'
+    ));
+
+    $resume->addCertificates(Certificate::create(
+        name: 'Advanced PHP Certification',
+        date: '2023-06-15',
+        url: 'https://cert.php-foundation.org/12345',
+        issuer: 'PHP Foundation'
+    ));
+
+    $resume->addPublications(Publication::create(
+        name: 'Modern PHP Development',
+        publisher: 'Tech Books Inc',
+        releaseDate: '2023-03-01',
+        url: 'https://techbooks.com/modern-php',
+        summary: 'Comprehensive guide to PHP development'
+    ));
+
+    $resume->addSkills(Skill::create(
+        name: 'PHP',
+        level: 'Expert',
+        keywords: ['Laravel', 'Symfony', 'Testing']
+    ));
+
+    $resume->addLanguages(Language::create(
+        language: 'English',
+        fluency: 'Native'
+    ));
+
+    $resume->addInterests(Interest::create(
+        name: 'Open Source',
+        keywords: ['PHP', 'JavaScript', 'Community']
+    ));
+
+    $resume->addReferences(Reference::create(
+        name: 'Jane Smith',
+        reference: 'Excellent team player and technical leader'
+    ));
+
+    $resume->addProjects(Project::create(
+        name: 'Enterprise CMS',
+        description: 'Built a custom CMS',
+        highlights: ['Scalable architecture'],
+        keywords: ['PHP', 'Laravel', 'Vue.js'],
+        startDate: '2022-01-01',
+        endDate: '2023-06-30',
+        url: 'https://project-cms.com',
+        roles: ['Lead Developer'],
+        entity: 'Tech Corp',
+        type: 'Professional'
+    ));
+
+    $resume->validate();
+})->throwsNoExceptions();

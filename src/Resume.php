@@ -303,28 +303,43 @@ final class Resume
      */
     public function done(): self
     {
+        $this->validate();
+
         return $this;
     }
 
-    /**
-     * Converts the object to an associative array representation.
-     *
-     * @return array<string, mixed> The associative array representation of the object.
-     */
-    public function toArray(): array
+    public function validate(): self
     {
-        return [
-            'basics' => $this->basics->toArray(),
-        ];
-    }
+        $this->basics->validate();
 
-    /**
-     * Converts the object to its JSON string representation.
-     *
-     * @return string The JSON string representation of the object.
-     */
-    public function toJson(): string
-    {
-        return json_encode($this->toArray());
+        foreach ($this->work as $item) {
+            $item->validate();
+        }
+
+        foreach ($this->volunteer as $item) {
+            $item->validate();
+        }
+
+        foreach ($this->education as $item) {
+            $item->validate();
+        }
+
+        foreach ($this->awards as $item) {
+            $item->validate();
+        }
+
+        foreach ($this->certificates as $item) {
+            $item->validate();
+        }
+
+        foreach ($this->publications as $item) {
+            $item->validate();
+        }
+
+        foreach ($this->projects as $item) {
+            $item->validate();
+        }
+
+        return $this;
     }
 }

@@ -32,16 +32,6 @@ final class Profile
         return $this;
     }
 
-    /**
-     * Converts the properties of the current object to an associative array.
-     *
-     * @return array<string, mixed> An associative array containing the object's properties as keys and their values.
-     */
-    public function toArray(): array
-    {
-        return get_object_vars($this);
-    }
-
     public function getNetwork(): Network
     {
         return $this->network;

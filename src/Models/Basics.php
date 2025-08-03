@@ -78,17 +78,15 @@ final class Basics
         $this->validatePhoneNumber($this->phone);
         $this->validateUrl($this->url);
 
-        return $this;
-    }
+        $this->location?->validate();
 
-    /**
-     * Converts the properties of the current object to an associative array.
-     *
-     * @return array<string, mixed> An associative array containing the object's properties as keys and their values.
-     */
-    public function toArray(): array
-    {
-        return get_object_vars($this);
+        if ($this->profiles !== null) {
+            foreach ($this->profiles as $profile) {
+                $profile->validate();
+            }
+        }
+
+        return $this;
     }
 
     public function getName(): ?string

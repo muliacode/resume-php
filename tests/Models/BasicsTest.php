@@ -87,17 +87,3 @@ it('can be created with the create method', function (): void {
         ->and($personalInfo->getName())->toBe('Jane Doe')
         ->and($personalInfo->getEmail())->toBe('jane@example.com');
 });
-
-it('can convert to array', function (): void {
-    $personalInfo = Basics::create(
-        name: 'John Doe',
-        email: 'john@example.com'
-    );
-
-    $array = $personalInfo->toArray();
-
-    expect($array)->toBeArray()
-        ->and($array['name'])->toBe('John Doe')
-        ->and($array['email'])->toBe('john@example.com')
-        ->and($array)->toHaveKeys(['name', 'label', 'image', 'email', 'phone', 'url', 'summary']);
-});
