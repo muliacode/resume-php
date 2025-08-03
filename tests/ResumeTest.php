@@ -6,6 +6,7 @@ use Muliacode\Resume\Models\Award;
 use Muliacode\Resume\Models\Basics;
 use Muliacode\Resume\Models\Certificate;
 use Muliacode\Resume\Models\Education;
+use Muliacode\Resume\Models\Publication;
 use Muliacode\Resume\Models\Volunteer;
 use Muliacode\Resume\Models\Work;
 use Muliacode\Resume\Resume;
@@ -312,6 +313,58 @@ it('can convert to JSON string', function (): void {
     expect($json)->toBeString()
         ->and($array)->toBeArray()
         ->and($array)->toHaveKey('basics');
+});
+
+it('can add a single publication', function (): void {
+    $publication = new Publication(
+        name: 'The PHP Journal',
+        publisher: 'Tech Publishing House',
+        releaseDate: '2023-07-15',
+        url: 'https://publication.com/php-journal',
+        summary: 'A deep dive into PHP 8.4 features'
+    );
+
+    $this->resume->addPublications($publication);
+
+    expect($this->resume->getPublications())->toHaveCount(1)
+        ->and($this->resume->getPublications()[0])->toBe($publication);
+});
+
+it('can add multiple publications', function (): void {
+    $publication1 = new Publication(
+        name: 'The PHP Journal',
+        publisher: 'Tech Publishing House',
+        releaseDate: '2023-07-15',
+        url: 'https://publication.com/php-journal',
+        summary: 'A deep dive into PHP 8.4 features'
+    );
+
+    $publication2 = new Publication(
+        name: 'The Java Journal',
+        publisher: 'Code Insights',
+        releaseDate: '2024-02-01',
+        url: 'https://publication.com/java-journal',
+        summary: 'Exploring Java performance optimization tricks'
+    );
+
+    $this->resume->addPublications($publication1, $publication2);
+
+    expect($this->resume->getPublications())->toHaveCount(2)
+        ->and($this->resume->getPublications())->toContain($publication1, $publication2);
+});
+
+it('returns itself after adding publications', function (): void {
+    $publication = new Publication(
+        name: 'The PHP Journal',
+        publisher: 'Tech Publishing House',
+        releaseDate: '2023-07-15',
+        url: 'https://publication.com/php-journal',
+        summary: 'A deep dive into PHP 8.4 features'
+    );
+
+    $result = $this->resume->addPublications($publication);
+
+    expect($result)->toBe($this->resume);
 });
 
 it('can add a single award', function (): void {
