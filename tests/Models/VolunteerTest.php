@@ -35,7 +35,7 @@ test('it creates a volunteer with all properties through create method', functio
         endDate: '2025-06-01',
         summary: 'A short summary about the volunteer work.',
         highlights: ['highlight1', 'highlight2']
-    );
+    )->validate();
 
     expect($volunteer->getOrganization())->toBe('Organization Name')
         ->and($volunteer->getPosition())->toBe('Volunteer Position')

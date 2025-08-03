@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
+use Muliacode\Resume\Traits\DateValidationTrait;
+use Muliacode\Resume\Traits\UrlValidationTrait;
+
 final class Publication
 {
+    use DateValidationTrait;
+    use UrlValidationTrait;
+
     public function __construct(
         private ?string $name = null,
         private ?string $publisher = null,
@@ -23,6 +29,14 @@ final class Publication
         ?string $summary = null
     ): self {
         return new self($name, $publisher, $releaseDate, $url, $summary);
+    }
+
+    public function validate(): self
+    {
+        $this->validateDate($this->releaseDate);
+        $this->validateUrl($this->url);
+
+        return $this;
     }
 
     public function getName(): ?string

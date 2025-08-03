@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
+use Muliacode\Resume\Traits\DateValidationTrait;
+
 final class Award
 {
+    use DateValidationTrait;
+
     public function __construct(
         private ?string $title = null,
         private ?string $date = null,
@@ -21,6 +25,13 @@ final class Award
         ?string $summary = null
     ): self {
         return new self($title, $date, $awarder, $summary);
+    }
+
+    public function validate(): self
+    {
+        $this->validateDate($this->date);
+
+        return $this;
     }
 
     public function getTitle(): ?string

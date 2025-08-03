@@ -4,14 +4,21 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
+use Muliacode\Resume\Traits\DateValidationTrait;
+use Muliacode\Resume\Traits\UrlValidationTrait;
+
 final class Certificate
 {
+    use DateValidationTrait;
+    use UrlValidationTrait;
+
     public function __construct(
         private ?string $name = null,
         private ?string $date = null,
         private ?string $url = null,
         private ?string $issuer = null
     ) {
+
     }
 
     public static function create(
@@ -21,6 +28,14 @@ final class Certificate
         ?string $issuer = null
     ): self {
         return new self($name, $date, $url, $issuer);
+    }
+
+    public function validate(): self
+    {
+        $this->validateDate($this->date);
+        $this->validateUrl($this->url);
+
+        return $this;
     }
 
     public function getName(): ?string

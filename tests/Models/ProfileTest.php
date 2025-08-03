@@ -10,7 +10,7 @@ it('can be instantiated with constructor parameter and all data', function (): v
         network: Network::Github,
         username: 'johndoe',
         url: 'https://johndoe.github.io'
-    );
+    )->validate();
 
     expect($profile->getNetwork())->toBe(Network::Github)
         ->and($profile->getUsername())->toBe('johndoe')

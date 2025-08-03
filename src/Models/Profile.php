@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace Muliacode\Resume\Models;
 
 use Muliacode\Resume\Enums\Network;
+use Muliacode\Resume\Traits\UrlValidationTrait;
 
 final class Profile
 {
+    use UrlValidationTrait;
     public function __construct(
         private readonly Network $network,
         private readonly string $username,
         private ?string $url = null,
     ) {
-        // TODO: Validate URL
     }
 
     public static function create(
@@ -22,6 +23,13 @@ final class Profile
         ?string $url = null
     ): self {
         return new self($network, $username, $url);
+    }
+
+    public function validate(): self
+    {
+        $this->validateUrl($this->url);
+
+        return $this;
     }
 
     /**

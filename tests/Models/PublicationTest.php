@@ -13,7 +13,7 @@ test('it creates a publication with all properties', function (): void {
         '2025-08-03',
         'https://example.com',
         'Sample Summary'
-    );
+    )->validate();
 
     expect($publication->getName())->toBe('Sample Name')
         ->and($publication->getPublisher())->toBe('Sample Publisher')

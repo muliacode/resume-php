@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
+use Muliacode\Resume\Traits\DateValidationTrait;
+use Muliacode\Resume\Traits\UrlValidationTrait;
+
 final class Education
 {
+    use DateValidationTrait;
+    use UrlValidationTrait;
+
     public function __construct(
         private ?string $institution = null,
         private ?string $url = null,
@@ -19,8 +25,6 @@ final class Education
          */
         private ?array $courses = null,
     ) {
-        // TODO: Validate dates and URLs.
-
         if ($this->courses === null) {
             $this->courses = [];
         }
@@ -40,6 +44,15 @@ final class Education
         ?array $courses = null
     ): self {
         return new self($institution, $url, $area, $studyType, $startDate, $endDate, $score, $courses);
+    }
+
+    public function validate(): self
+    {
+        $this->validateUrl($this->url);
+        $this->validateDate($this->startDate);
+        $this->validateDate($this->endDate);
+
+        return $this;
     }
 
     public function getInstitution(): ?string

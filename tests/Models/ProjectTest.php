@@ -18,7 +18,7 @@ test('it can create a project with all parameters', function (): void {
         ['Role 1', 'Role 2'],
         'Test Entity',
         'Test Type'
-    );
+    )->validate();
 
     expect($project->getName())->toBe('Test Project')
         ->and($project->getDescription())->toBe('This is a test project')

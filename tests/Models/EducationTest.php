@@ -16,7 +16,7 @@ test('it can create an Education instance with all properties', function (): voi
         '2024-01-01',
         '4.0',
         ['CS101', 'CS102']
-    );
+    )->validate();
 
     expect($education->getInstitution())->toBe('Test University')
         ->and($education->getUrl())->toBe('https://test-university.edu')

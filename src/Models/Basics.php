@@ -4,8 +4,16 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
+use Muliacode\Resume\Traits\EmailValidationTrait;
+use Muliacode\Resume\Traits\PhoneNumberValidationTrait;
+use Muliacode\Resume\Traits\UrlValidationTrait;
+
 final class Basics
 {
+    use EmailValidationTrait;
+    use PhoneNumberValidationTrait;
+    use UrlValidationTrait;
+
     /**
      * Initializes a new instance of the class with the provided properties.
      *
@@ -32,7 +40,7 @@ final class Basics
         private ?Location $location = null,
         private ?array $profiles = [],
     ) {
-        // TODO: Add Validation such as email and phonenumber.
+
     }
 
     /**
@@ -62,6 +70,15 @@ final class Basics
         ?array $profiles = [],
     ): self {
         return new self($name, $label, $image, $email, $phone, $url, $summary, $location, $profiles);
+    }
+
+    public function validate(): self
+    {
+        $this->validateEmail($this->email);
+        $this->validatePhoneNumber($this->phone);
+        $this->validateUrl($this->url);
+
+        return $this;
     }
 
     /**

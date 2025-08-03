@@ -12,7 +12,7 @@ test('create method initializes an Award instance with provided properties', fun
     $awarder = 'Tech Community';
     $summary = 'Awarded for exceptional contributions to open-source projects.';
 
-    $award = Award::create($title, $date, $awarder, $summary);
+    $award = Award::create($title, $date, $awarder, $summary)->validate();
 
     expect($award)
         ->toBeInstanceOf(Award::class)

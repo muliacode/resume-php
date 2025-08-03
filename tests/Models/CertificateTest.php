@@ -37,7 +37,7 @@ test('create method sets all properties correctly', function (): void {
         date: '2025-08-03',
         url: 'https://example.com',
         issuer: 'Certification Authority'
-    );
+    )->validate();
 
     expect($certificate->getName())->toBe('PHP Certification')
         ->and($certificate->getDate())->toBe('2025-08-03')
@@ -50,7 +50,8 @@ test('create method sets all properties correctly with setters', function (): vo
         ->setName('PHP Certification')
         ->setDate('2025-08-03')
         ->setUrl('https://example.com')
-        ->setIssuer('Certification Authority');
+        ->setIssuer('Certification Authority')
+        ->validate();
 
     expect($certificate->getName())->toBe('PHP Certification')
         ->and($certificate->getDate())->toBe('2025-08-03')

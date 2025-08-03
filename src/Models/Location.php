@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Muliacode\Resume\Models;
 
+use Muliacode\Resume\Traits\CountryCodeValidationTrait;
+use Muliacode\Resume\Traits\PostalCodeValidationTrait;
+
 final class Location
 {
+    use CountryCodeValidationTrait;
+    use PostalCodeValidationTrait;
     public function __construct(
         private ?string $address = null,
         private ?string $postalCode = null,
@@ -13,7 +18,7 @@ final class Location
         private ?string $countryCode = null,
         private ?string $region = null
     ) {
-        // TODO: Validate Country Code to be as per ISO-3166-1 ALPHA-2
+
     }
 
     public static function create(
@@ -88,6 +93,14 @@ final class Location
     public function setRegion(?string $region): self
     {
         $this->region = $region;
+        return $this;
+    }
+
+    public function validate(): self
+    {
+        $this->validateCountryCode($this->countryCode);
+        $this->validatePostalCode($this->postalCode, $this->countryCode);
+
         return $this;
     }
 }

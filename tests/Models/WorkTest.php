@@ -31,7 +31,7 @@ test('it creates an instance with given values using the create method', functio
         endDate: '2025-01-01',
         summary: 'Summary of the work',
         highlights: ['Highlight 1', 'Highlight 2']
-    );
+    )->validate();
 
     expect($work->getName())->toBe('Company Name')
         ->and($work->getLocation())->toBe('City, Country')

@@ -50,8 +50,8 @@ it('can be instantiated with setts and all data', function (): void {
         ->setUrl('https://john.doe')
         ->setSummary('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
         ->setLocation(Location::create())
-        ->setProfiles($profiles);
-
+        ->setProfiles($profiles)
+        ->validate();
 
     expect($personalInfo->getName())->toBe('John Doe')
         ->and($personalInfo->getEmail())->toBe('john@example.com')
@@ -62,6 +62,7 @@ it('can be instantiated with setts and all data', function (): void {
         ->and($personalInfo->getSummary())->toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
         ->and($personalInfo->getLocation())->toBeInstanceOf(Location::class)
         ->and($personalInfo->getProfiles())->toBe($profiles);
+
 });
 
 it('can be instantiated with constructor parameters', function (): void {

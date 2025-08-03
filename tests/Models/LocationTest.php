@@ -11,7 +11,7 @@ it('can be instantiated with constructor parameter and all data', function (): v
         city: 'Anytown',
         countryCode: 'US',
         region: 'NY'
-    );
+    )->validate();
 
     expect($location->getAddress())->toBe('1234 Main Street')
         ->and($location->getPostalCode())->toBe('12345')
