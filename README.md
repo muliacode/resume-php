@@ -1,7 +1,9 @@
 # ResumifyPHP
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/muliacode/resumify-php.svg?style=flat-square)](https://packagist.org/packages/muliacode/resumify-php)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/muliacode/resumify-php)](https://packagist.org/packages/muliacode/resumify-php)
 [![Tests](https://img.shields.io/github/actions/workflow/status/muliacode/resumify-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/muliacode/resumify-php/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/muliacode/resumify-php.svg?style=flat-square)](https://packagist.org/packages/muliacode/resumify-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/muliacode/resumify-php?style=flat-square)](https://packagist.org/packages/muliacode/resumify-php)
+![GitHub License](https://img.shields.io/github/license/muliacode/resumify-php)
+
 
 A lightweight PHP package for creating and exporting resume profiles to standardized formats like json-resume.
 
