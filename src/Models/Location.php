@@ -12,8 +12,8 @@ use JsonSerializable;
 final class Location implements JsonSerializable
 {
     use CountryCodeValidationTrait;
-    use PostalCodeValidationTrait;
     use FilterNullValuesFromArray;
+    use PostalCodeValidationTrait;
 
     public function __construct(
         private ?string $address = null,

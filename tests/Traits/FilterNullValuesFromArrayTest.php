@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Muliacode\Resumify\Tests\Traits;
 
 use Muliacode\Resumify\Traits\FilterNullValuesFromArray;
+use BadMethodCallException;
+use JsonSerializable;
 
-test('filterNullValues removes null values from array', function () {
+test('filterNullValues removes null values from array', function (): void {
     $trait = new class {
         use FilterNullValuesFromArray;
 
@@ -18,8 +22,8 @@ test('filterNullValues removes null values from array', function () {
     expect($result)->toBe(['a' => 1, 'c' => 3]);
 });
 
-test('jsonSerialize removes null values based on getJsonData', function () {
-    $trait = new class implements \JsonSerializable {
+test('jsonSerialize removes null values based on getJsonData', function (): void {
+    $trait = new class implements JsonSerializable {
         use FilterNullValuesFromArray;
 
         public function getJsonData(): array
@@ -32,15 +36,15 @@ test('jsonSerialize removes null values based on getJsonData', function () {
     expect($result)->toBe(['a' => 1, 'c' => 3]);
 });
 
-test('jsonSerialize throws exception if getJsonData not implemented', function () {
+test('jsonSerialize throws exception if getJsonData not implemented', function (): void {
     $trait = new class {
         use FilterNullValuesFromArray;
     };
 
-    expect(fn() => $trait->jsonSerialize())->toThrow(\BadMethodCallException::class, 'Classes using FiltersNullValuesForJson trait must implement a getJsonData() method.');
+    expect(fn (): array => $trait->jsonSerialize())->toThrow(BadMethodCallException::class, 'Classes using FiltersNullValuesForJson trait must implement a getJsonData() method.');
 });
 
-test('filterNullValues keeps non-null values', function () {
+test('filterNullValues keeps non-null values', function (): void {
     $trait = new class {
         use FilterNullValuesFromArray;
 
@@ -54,7 +58,7 @@ test('filterNullValues keeps non-null values', function () {
     expect($result)->toBe(['a' => 0, 'b' => false, 'c' => '']);
 });
 
-test('filterNullValues handles empty arrays', function () {
+test('filterNullValues handles empty arrays', function (): void {
     $trait = new class {
         use FilterNullValuesFromArray;
 

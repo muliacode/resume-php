@@ -12,8 +12,8 @@ use JsonSerializable;
 final class Certificate implements JsonSerializable
 {
     use DateValidationTrait;
-    use UrlValidationTrait;
     use FilterNullValuesFromArray;
+    use UrlValidationTrait;
 
     public function __construct(
         private ?string $name = null,

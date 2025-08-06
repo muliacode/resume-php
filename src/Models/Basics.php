@@ -13,9 +13,9 @@ use JsonSerializable;
 final class Basics implements JsonSerializable
 {
     use EmailValidationTrait;
+    use FilterNullValuesFromArray;
     use PhoneNumberValidationTrait;
     use UrlValidationTrait;
-    use FilterNullValuesFromArray;
 
     /**
      * Initializes a new instance of the class with the provided properties.

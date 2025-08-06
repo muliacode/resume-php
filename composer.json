@@ -50,7 +50,7 @@
             "@test:refactor",
             "@phpstan",
             "@test:type-coverage",
-            "@test:unit"
+            "@test"
         ],
         "format": [
             "@lint",

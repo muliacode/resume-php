@@ -13,8 +13,8 @@ use JsonSerializable;
 final class Education implements JsonSerializable
 {
     use DateValidationTrait;
-    use UrlValidationTrait;
     use FilterNullValuesFromArray;
+    use UrlValidationTrait;
 
     public function __construct(
         private ?string $institution = null,

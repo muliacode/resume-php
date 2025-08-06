@@ -11,8 +11,8 @@ use JsonSerializable;
 
 final class Profile implements JsonSerializable
 {
-    use UrlValidationTrait;
     use FilterNullValuesFromArray;
+    use UrlValidationTrait;
 
     public function __construct(
         private readonly Network $network,

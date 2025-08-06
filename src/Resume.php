@@ -18,6 +18,7 @@ use Muliacode\Resumify\Models\Skill;
 use Muliacode\Resumify\Models\Volunteer;
 use Muliacode\Resumify\Models\Work;
 use JsonSerializable;
+use Muliacode\Resumify\Traits\FilterNullValuesFromArray;
 
 /**
  * Resume Facade
@@ -29,6 +30,8 @@ use JsonSerializable;
  */
 final class Resume implements JsonSerializable
 {
+    use FilterNullValuesFromArray;
+
     private Basics $basics;
 
     /**
@@ -369,7 +372,7 @@ final class Resume implements JsonSerializable
     /**
      * @return array<string, mixed>
      */
-    public function jsonSerialize(): array
+    public function getJsonData(): array
     {
         $data = [
             'basics' => $this->basics->jsonSerialize(),
