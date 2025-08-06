@@ -6,10 +6,12 @@ namespace Muliacode\Resumify\Models;
 
 use Muliacode\Resumify\Traits\DateValidationTrait;
 use JsonSerializable;
+use Muliacode\Resumify\Traits\FilterNullValuesFromArray;
 
 final class Award implements JsonSerializable
 {
     use DateValidationTrait;
+    use FilterNullValuesFromArray;
 
     public function __construct(
         private ?string $title = null,
@@ -82,7 +84,7 @@ final class Award implements JsonSerializable
     /**
      * @return array<string, mixed>
      */
-    public function jsonSerialize(): array
+    public function getJsonData(): array
     {
         return [
           'title' => $this->title,

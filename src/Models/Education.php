@@ -6,6 +6,7 @@ namespace Muliacode\Resumify\Models;
 
 use Muliacode\Resumify\Enums\EducationType;
 use Muliacode\Resumify\Traits\DateValidationTrait;
+use Muliacode\Resumify\Traits\FilterNullValuesFromArray;
 use Muliacode\Resumify\Traits\UrlValidationTrait;
 use JsonSerializable;
 
@@ -13,6 +14,7 @@ final class Education implements JsonSerializable
 {
     use DateValidationTrait;
     use UrlValidationTrait;
+    use FilterNullValuesFromArray;
 
     public function __construct(
         private ?string $institution = null,
@@ -159,7 +161,7 @@ final class Education implements JsonSerializable
     /**
      * @return array<string, mixed>
      */
-    public function jsonSerialize(): array
+    public function getJsonData(): array
     {
         return [
             'institution' => $this->institution,

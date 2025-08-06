@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Muliacode\Resumify\Models;
 
 use Muliacode\Resumify\Traits\CountryCodeValidationTrait;
+use Muliacode\Resumify\Traits\FilterNullValuesFromArray;
 use Muliacode\Resumify\Traits\PostalCodeValidationTrait;
 use JsonSerializable;
 
@@ -12,6 +13,8 @@ final class Location implements JsonSerializable
 {
     use CountryCodeValidationTrait;
     use PostalCodeValidationTrait;
+    use FilterNullValuesFromArray;
+
     public function __construct(
         private ?string $address = null,
         private ?string $postalCode = null,
@@ -98,7 +101,7 @@ final class Location implements JsonSerializable
     /**
      * @return array<string, mixed>
      */
-    public function jsonSerialize(): array
+    public function getJsonData(): array
     {
         return [
           'address' => $this->address,

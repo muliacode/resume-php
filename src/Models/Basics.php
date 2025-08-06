@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Muliacode\Resumify\Models;
 
 use Muliacode\Resumify\Traits\EmailValidationTrait;
+use Muliacode\Resumify\Traits\FilterNullValuesFromArray;
 use Muliacode\Resumify\Traits\PhoneNumberValidationTrait;
 use Muliacode\Resumify\Traits\UrlValidationTrait;
 use JsonSerializable;
@@ -14,6 +15,7 @@ final class Basics implements JsonSerializable
     use EmailValidationTrait;
     use PhoneNumberValidationTrait;
     use UrlValidationTrait;
+    use FilterNullValuesFromArray;
 
     /**
      * Initializes a new instance of the class with the provided properties.
@@ -199,7 +201,7 @@ final class Basics implements JsonSerializable
     /**
      * @return array<string, mixed>
      */
-    public function jsonSerialize(): array
+    public function getJsonData(): array
     {
         return [
             'name' => $this->name,

@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Muliacode\Resumify\Models;
 
 use JsonSerializable;
+use Muliacode\Resumify\Traits\FilterNullValuesFromArray;
 
 final class Interest implements JsonSerializable
 {
+    use FilterNullValuesFromArray;
+
     public function __construct(
         private ?string $name = null,
         /**
@@ -60,7 +63,7 @@ final class Interest implements JsonSerializable
     /**
      * @return array<string, mixed>
      */
-    public function jsonSerialize(): array
+    public function getJsonData(): array
     {
         return [
           'name' => $this->name,

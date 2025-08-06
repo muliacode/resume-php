@@ -6,9 +6,12 @@ namespace Muliacode\Resumify\Models;
 
 use Muliacode\Resumify\Enums\LanguageFluencyLevel;
 use JsonSerializable;
+use Muliacode\Resumify\Traits\FilterNullValuesFromArray;
 
 final class Language implements JsonSerializable
 {
+    use FilterNullValuesFromArray;
+
     public function __construct(
         private ?string $language = null,
         private ?LanguageFluencyLevel $fluency = null,
@@ -45,7 +48,7 @@ final class Language implements JsonSerializable
     /**
      * @return array<string, mixed>
      */
-    public function jsonSerialize(): array
+    public function getJsonData(): array
     {
         return [
             'language' => $this->language,

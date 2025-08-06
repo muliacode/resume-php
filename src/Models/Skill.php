@@ -6,9 +6,12 @@ namespace Muliacode\Resumify\Models;
 
 use Muliacode\Resumify\Enums\SkillLevel;
 use JsonSerializable;
+use Muliacode\Resumify\Traits\FilterNullValuesFromArray;
 
 final class Skill implements JsonSerializable
 {
+    use FilterNullValuesFromArray;
+
     public function __construct(
         private ?string $name = null,
         private ?SkillLevel $level = null,
@@ -76,7 +79,7 @@ final class Skill implements JsonSerializable
     /**
      * @return array<string, mixed>
      */
-    public function jsonSerialize(): array
+    public function getJsonData(): array
     {
         return [
             'name' => $this->name,
